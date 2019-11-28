@@ -109,19 +109,19 @@ The deployment sequence is follows:
 4. Create DynamoDB tables in Source Account
 5. Create Lambda Execution Role in Source Account to be used by Lambda Functions in Source Account
 6. Deploy **GDCReplicationPlanner** Lambda Function in Source Account 
-   	Lambda Handler = ```com.amazonaws.gdcreplication.lambda.GDCReplicationPlanner```,
-   	Lambda Execution Timeout = 3 minutes, 
-	Memory = 128 MB.
+   	1. Lambda Handler = ```com.amazonaws.gdcreplication.lambda.GDCReplicationPlanner```
+   	2. Lambda Execution Timeout = 3 minutes
+	3. Memory = 128 MB
 7. Deploy **ExportDatabaseWithTables** Lambda Function in Source Account 
-   	Lambda Handler = ```com.amazonaws.gdcreplication.lambda.ExportDatabaseWithTables```,
-   	Lambda Execution Timeout = 3 minutes, 
-	Memory = 192 MB.
+   	1. Lambda Handler = ```com.amazonaws.gdcreplication.lambda.ExportDatabaseWithTables```
+   	2. Lambda Execution Timeout = 3 minutes
+	3. Memory = 192 MB
 8. Deploy **ExportLargeTable** Lambda Function in Source Account
-	Lambda Handler = ```com.amazonaws.gdcreplication.lambda.ExportLargeTable```,
-	Lambda Execution Timeout = 3 minutes, 
-	Memory = 256 MB.
+	1. Lambda Handler = ```com.amazonaws.gdcreplication.lambda.ExportLargeTable```
+	2. Lambda Execution Timeout = 3 minutes
+	3. Memory = 256 MB
 9. Add **Large Table SQS Queue** as a trigger to **ExportLargeTable** Lambda Function.
-	Batch size = 1
+	1. Batch size = 1
 10. Add SNS Topic as a trigger to **ExportDatabaseWithTables** Lambda function
 11. Create CloudWatch Event Rule in Source Account and add Export Lambda function as the target
 12. Cross-Account Permissions Step 1 of 2: in Source Account. Grant permissions to account B to subscribe to the second SNS Topic:
@@ -146,9 +146,9 @@ The deployment sequence is follows:
 16. Create SQS (Dead Letter Queue) queue of type Standard - this is to process schema for large tables 
 17. Create Lambda Execution Role in Target Account to be used by Lambda Functions in Target Accounts. This needs to have Cross-Account permissions to the S3 bucket created in Step # 2.
 18. Deploy **ImportDatabaseOrTable** Lambda Function in Target Account 
-	Lambda Handler = ```com.amazonaws.gdcreplication.lambda.ImportDatabaseOrTable```,
-	Lambda Execution Timeout = 3 minutes, 
-	Memory = 192 MB.
+	1. Lambda Handler = ```com.amazonaws.gdcreplication.lambda.ImportDatabaseOrTable```
+	2. Lambda Execution Timeout = 3 minutes
+	3. Memory = 192 MB
 19. Create a Subscription. From target account, subscribe the Lambda function to the topic. When a message is sent to the lambda-x-account topic in account A, Amazon SNS invokes the SNS-X-Account function in account B.
 	
 	```
@@ -160,17 +160,22 @@ The deployment sequence is follows:
 	Additional References:
 	 - https://docs.aws.amazon.com/lambda/latest/dg/with-sns-example.html#with-sns-create-x-account-permissions
 20. Deploy **ImportLargeTable** Lambda Function in Target Account 
-	Lambda Handler =  ```com.amazonaws.gdcreplication.lambda.ImportLargeTable```,
-	Lambda Execution Timeout = 3 minutes, 
-	Memory = 256 MB.
+	1. Lambda Handler =  ```com.amazonaws.gdcreplication.lambda.ImportLargeTable```
+	2. Lambda Execution Timeout = 3 minutes
+	3. Memory = 256 MB
 21. Add **Large Table SQS Queue** as a trigger to **ImportLargeTable** Lambda Function. 
-	Batch size = 1
+	1. Batch size = 1
 22. Deploy **DLQImportDatabaseOrTable** Lambda Function in Target Account
-	Lambda Handler = ```com.amazonaws.gdcreplication.lambda.DLQImportDatabaseOrTable```, 
-	Lambda Execution Timeout = 3 minutes, 
-	Memory = 192 MB.
+	1. Lambda Handler = ```com.amazonaws.gdcreplication.lambda.DLQImportDatabaseOrTable``` 
+	2. Lambda Execution Timeout = 3 minutes
+	3. Memory = 192 MB
 23. Add Dead Letter SQS Queue as a trigger to **DLQImportDatabaseOrTable** Lambda Function. 
-	Batch size = 1
+	1. Batch size = 1
+
+## Limitations
+Following are the primary limitations:
+1. This utility is a not intended to be used for real-time synchronization of AWS Glue data catalogs. 
+2. This utility does not attempt to resolve database and table name conflicts which may result in undesirable behavior.
 
 ## Running this solution as a Scheduled Job 
 This solution supports the following use cases:

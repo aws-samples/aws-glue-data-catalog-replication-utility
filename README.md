@@ -174,7 +174,7 @@ The deployment sequence is follows:
 
 ## Limitations
 Following are the primary limitations:
-1. This utility is a not intended to be used for real-time synchronization of AWS Glue data catalogs. 
+1. This utility is not intended to be used for real-time synchronization of AWS Glue data catalogs. 
 2. This utility does not attempt to resolve database and table name conflicts which may result in undesirable behavior.
 
 ## Running this solution as a Scheduled Job 

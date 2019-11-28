@@ -1,0 +1,549 @@
+{
+	"table": {
+		"name": "data",
+		"databaseName": "new_db",
+		"owner": "owner",
+		"createTime": "Oct 17, 2019 10:24:43 PM",
+		"updateTime": "Oct 17, 2019 10:24:43 PM",
+		"lastAccessTime": "Oct 17, 2019 10:24:43 PM",
+		"retention": 0,
+		"storageDescriptor": {
+			"columns": [
+				{
+					"name": "id",
+					"type": "string"
+				},
+				{
+					"name": "type",
+					"type": "string"
+				},
+				{
+					"name": "actor",
+					"type": "struct\u003cid:int,login:string,display_login:string,gravatar_id:string,url:string,avatar_url:string\u003e"
+				},
+				{
+					"name": "repo",
+					"type": "struct\u003cid:int,name:string,url:string\u003e"
+				},
+				{
+					"name": "payload",
+					"type": "struct\u003cpush_id:int,size:int,distinct_size:int,ref:string,head:string,before:string,commits:array\u003cstruct\u003csha:string,author:struct\u003cname:string,email:string\u003e,message:string,distinct:boolean,url:string\u003e\u003e,ref_type:string,master_branch:string,description:string,pusher_type:string,action:string,number:int,pull_request:struct\u003curl:string,id:int,html_url:string,diff_url:string,patch_url:string,issue_url:string,number:int,state:string,locked:boolean,title:string,user:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,body:string,created_at:string,updated_at:string,closed_at:string,merged_at:string,merge_commit_sha:string,assignee:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,assignees:array\u003cstruct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e\u003e,milestone:struct\u003curl:string,html_url:string,labels_url:string,id:int,number:int,title:string,description:string,creator:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,open_issues:int,closed_issues:int,state:string,created_at:string,updated_at:string,due_on:string,closed_at:string\u003e,commits_url:string,review_comments_url:string,review_comment_url:string,comments_url:string,statuses_url:string,head:struct\u003clabel:string,ref:string,sha:string,user:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,repo:struct\u003cid:int,name:string,full_name:string,owner:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,private:boolean,html_url:string,description:string,fork:boolean,url:string,forks_url:string,keys_url:string,collaborators_url:string,teams_url:string,hooks_url:string,issue_events_url:string,events_url:string,assignees_url:string,branches_url:string,tags_url:string,blobs_url:string,git_tags_url:string,git_refs_url:string,trees_url:string,statuses_url:string,languages_url:string,stargazers_url:string,contributors_url:string,subscribers_url:string,subscription_url:string,commits_url:string,git_commits_url:string,comments_url:string,issue_comment_url:string,contents_url:string,compare_url:string,merges_url:string,archive_url:string,downloads_url:string,issues_url:string,pulls_url:string,milestones_url:string,notifications_url:string,labels_url:string,releases_url:string,deployments_url:string,created_at:string,updated_at:string,pushed_at:string,git_url:string,ssh_url:string,clone_url:string,svn_url:string,homepage:string,size:int,stargazers_count:int,watchers_count:int,language:string,has_issues:boolean,has_downloads:boolean,has_wiki:boolean,has_pages:boolean,forks_count:int,mirror_url:string,open_issues_count:int,forks:int,open_issues:int,watchers:int,default_branch:string\u003e\u003e,base:struct\u003clabel:string,ref:string,sha:string,user:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,repo:struct\u003cid:int,name:string,full_name:string,owner:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,private:boolean,html_url:string,description:string,fork:boolean,url:string,forks_url:string,keys_url:string,collaborators_url:string,teams_url:string,hooks_url:string,issue_events_url:string,events_url:string,assignees_url:string,branches_url:string,tags_url:string,blobs_url:string,git_tags_url:string,git_refs_url:string,trees_url:string,statuses_url:string,languages_url:string,stargazers_url:string,contributors_url:string,subscribers_url:string,subscription_url:string,commits_url:string,git_commits_url:string,comments_url:string,issue_comment_url:string,contents_url:string,compare_url:string,merges_url:string,archive_url:string,downloads_url:string,issues_url:string,pulls_url:string,milestones_url:string,notifications_url:string,labels_url:string,releases_url:string,deployments_url:string,created_at:string,updated_at:string,pushed_at:string,git_url:string,ssh_url:string,clone_url:string,svn_url:string,homepage:string,size:int,stargazers_count:int,watchers_count:int,language:string,has_issues:boolean,has_downloads:boolean,has_wiki:boolean,has_pages:boolean,forks_count:int,mirror_url:string,open_issues_count:int,forks:int,open_issues:int,watchers:int,default_branch:string\u003e\u003e,_links:struct\u003cself:struct\u003chref:string\u003e,html:struct\u003chref:string\u003e,issue:struct\u003chref:string\u003e,comments:struct\u003chref:string\u003e,review_comments:struct\u003chref:string\u003e,review_comment:struct\u003chref:string\u003e,commits:struct\u003chref:string\u003e,statuses:struct\u003chref:string\u003e\u003e,merged:boolean,mergeable:boolean,mergeable_state:string,merged_by:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,comments:int,review_comments:int,maintainer_can_modify:boolean,commits:int,additions:int,deletions:int,changed_files:int\u003e,issue:struct\u003curl:string,repository_url:string,labels_url:string,comments_url:string,events_url:string,html_url:string,id:int,number:int,title:string,user:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,labels:array\u003cstruct\u003cid:int,url:string,name:string,color:string,default:boolean\u003e\u003e,state:string,locked:boolean,assignee:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,assignees:array\u003cstruct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e\u003e,milestone:struct\u003curl:string,html_url:string,labels_url:string,id:int,number:int,title:string,description:string,creator:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,open_issues:int,closed_issues:int,state:string,created_at:string,updated_at:string,due_on:string,closed_at:string\u003e,comments:int,created_at:string,updated_at:string,closed_at:string,body:string,pull_request:struct\u003curl:string,html_url:string,diff_url:string,patch_url:string\u003e\u003e,comment:struct\u003curl:string,html_url:string,issue_url:string,id:int,user:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,created_at:string,updated_at:string,body:string,pull_request_review_id:int,diff_hunk:string,path:string,position:int,original_position:int,commit_id:string,original_commit_id:string,pull_request_url:string,_links:struct\u003cself:struct\u003chref:string\u003e,html:struct\u003chref:string\u003e,pull_request:struct\u003chref:string\u003e\u003e,line:int\u003e,forkee:struct\u003cid:int,name:string,full_name:string,owner:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,private:boolean,html_url:string,description:string,fork:boolean,url:string,forks_url:string,keys_url:string,collaborators_url:string,teams_url:string,hooks_url:string,issue_events_url:string,events_url:string,assignees_url:string,branches_url:string,tags_url:string,blobs_url:string,git_tags_url:string,git_refs_url:string,trees_url:string,statuses_url:string,languages_url:string,stargazers_url:string,contributors_url:string,subscribers_url:string,subscription_url:string,commits_url:string,git_commits_url:string,comments_url:string,issue_comment_url:string,contents_url:string,compare_url:string,merges_url:string,archive_url:string,downloads_url:string,issues_url:string,pulls_url:string,milestones_url:string,notifications_url:string,labels_url:string,releases_url:string,deployments_url:string,created_at:string,updated_at:string,pushed_at:string,git_url:string,ssh_url:string,clone_url:string,svn_url:string,homepage:string,size:int,stargazers_count:int,watchers_count:int,language:string,has_issues:boolean,has_downloads:boolean,has_wiki:boolean,has_pages:boolean,forks_count:int,mirror_url:string,open_issues_count:int,forks:int,open_issues:int,watchers:int,default_branch:string,public:boolean\u003e,pages:array\u003cstruct\u003cpage_name:string,title:string,summary:string,action:string,sha:string,html_url:string\u003e\u003e,release:struct\u003curl:string,assets_url:string,upload_url:string,html_url:string,id:int,tag_name:string,target_commitish:string,name:string,draft:boolean,author:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,prerelease:boolean,created_at:string,published_at:string,assets:array\u003cstruct\u003curl:string,id:int,name:string,label:string,uploader:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,content_type:string,state:string,size:int,download_count:int,created_at:string,updated_at:string,browser_download_url:string\u003e\u003e,tarball_url:string,zipball_url:string,body:string\u003e,member:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e\u003e"
+				},
+				{
+					"name": "public",
+					"type": "boolean"
+				},
+				{
+					"name": "created_at",
+					"type": "string"
+				},
+				{
+					"name": "org",
+					"type": "struct\u003cid:int,login:string,gravatar_id:string,url:string,avatar_url:string\u003e"
+				}
+			],
+			"location": "s3://aws-glue-datasets-us-east-1/examples/githubarchive/month/data/",
+			"inputFormat": "org.apache.hadoop.mapred.TextInputFormat",
+			"outputFormat": "org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat",
+			"compressed": true,
+			"numberOfBuckets": -1,
+			"serdeInfo": {
+				"serializationLibrary": "org.openx.data.jsonserde.JsonSerDe",
+				"parameters": {
+					"paths": "actor,created_at,id,org,payload,public,repo,type"
+				}
+			},
+			"bucketColumns": [
+			],
+			"sortColumns": [
+			],
+			"parameters": {
+				"sizeKey": "11026096613",
+				"objectCount": "744",
+				"UPDATED_BY_CRAWLER": "second_github",
+				"CrawlerSchemaSerializerVersion": "1.0",
+				"recordCount": "4795154",
+				"averageRecordSize": "2471",
+				"CrawlerSchemaDeserializerVersion": "1.0",
+				"compressionType": "gzip",
+				"classification": "json",
+				"typeOfData": "file"
+			},
+			"storedAsSubDirectories": false
+		},
+		"partitionKeys": [
+			{
+				"name": "partition_0",
+				"type": "string"
+			},
+			{
+				"name": "partition_1",
+				"type": "string"
+			},
+			{
+				"name": "partition_2",
+				"type": "string"
+			}
+		],
+		"tableType": "EXTERNAL_TABLE",
+		"parameters": {
+			"sizeKey": "11026096613",
+			"objectCount": "744",
+			"UPDATED_BY_CRAWLER": "second_github",
+			"CrawlerSchemaSerializerVersion": "1.0",
+			"recordCount": "4795154",
+			"averageRecordSize": "2471",
+			"CrawlerSchemaDeserializerVersion": "1.0",
+			"compressionType": "gzip",
+			"classification": "json",
+			"typeOfData": "file"
+		},
+		"createdBy": "arn:aws:sts::01234567890:assumed-role/AWSGlueServiceRole-abc/AWS-Crawler"
+	},
+	"partitionList": [
+		{
+			"values": [
+				"2017",
+				"01",
+				"17"
+			],
+			"databaseName": "new_db",
+			"tableName": "data",
+			"creationTime": "Oct 17, 2019 10:24:45 PM",
+			"lastAccessTime": "Oct 17, 2019 10:24:45 PM",
+			"storageDescriptor": {
+				"columns": [
+					{
+						"name": "id",
+						"type": "string"
+					},
+					{
+						"name": "type",
+						"type": "string"
+					},
+					{
+						"name": "actor",
+						"type": "struct\u003cid:int,login:string,display_login:string,gravatar_id:string,url:string,avatar_url:string\u003e"
+					},
+					{
+						"name": "repo",
+						"type": "struct\u003cid:int,name:string,url:string\u003e"
+					},
+					{
+						"name": "payload",
+						"type": "struct\u003cpush_id:int,size:int,distinct_size:int,ref:string,head:string,before:string,commits:array\u003cstruct\u003csha:string,author:struct\u003cname:string,email:string\u003e,message:string,distinct:boolean,url:string\u003e\u003e,forkee:struct\u003cid:int,name:string,full_name:string,owner:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,private:boolean,html_url:string,description:string,fork:boolean,url:string,forks_url:string,keys_url:string,collaborators_url:string,teams_url:string,hooks_url:string,issue_events_url:string,events_url:string,assignees_url:string,branches_url:string,tags_url:string,blobs_url:string,git_tags_url:string,git_refs_url:string,trees_url:string,statuses_url:string,languages_url:string,stargazers_url:string,contributors_url:string,subscribers_url:string,subscription_url:string,commits_url:string,git_commits_url:string,comments_url:string,issue_comment_url:string,contents_url:string,compare_url:string,merges_url:string,archive_url:string,downloads_url:string,issues_url:string,pulls_url:string,milestones_url:string,notifications_url:string,labels_url:string,releases_url:string,deployments_url:string,created_at:string,updated_at:string,pushed_at:string,git_url:string,ssh_url:string,clone_url:string,svn_url:string,homepage:string,size:int,stargazers_count:int,watchers_count:int,language:string,has_issues:boolean,has_downloads:boolean,has_wiki:boolean,has_pages:boolean,forks_count:int,mirror_url:string,open_issues_count:int,forks:int,open_issues:int,watchers:int,default_branch:string,public:boolean\u003e,action:string,number:int,pull_request:struct\u003curl:string,id:int,html_url:string,diff_url:string,patch_url:string,issue_url:string,number:int,state:string,locked:boolean,title:string,user:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,body:string,created_at:string,updated_at:string,closed_at:string,merged_at:string,merge_commit_sha:string,assignee:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,assignees:array\u003cstruct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e\u003e,milestone:struct\u003curl:string,html_url:string,labels_url:string,id:int,number:int,title:string,description:string,creator:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,open_issues:int,closed_issues:int,state:string,created_at:string,updated_at:string,due_on:string,closed_at:string\u003e,commits_url:string,review_comments_url:string,review_comment_url:string,comments_url:string,statuses_url:string,head:struct\u003clabel:string,ref:string,sha:string,user:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,repo:struct\u003cid:int,name:string,full_name:string,owner:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,private:boolean,html_url:string,description:string,fork:boolean,url:string,forks_url:string,keys_url:string,collaborators_url:string,teams_url:string,hooks_url:string,issue_events_url:string,events_url:string,assignees_url:string,branches_url:string,tags_url:string,blobs_url:string,git_tags_url:string,git_refs_url:string,trees_url:string,statuses_url:string,languages_url:string,stargazers_url:string,contributors_url:string,subscribers_url:string,subscription_url:string,commits_url:string,git_commits_url:string,comments_url:string,issue_comment_url:string,contents_url:string,compare_url:string,merges_url:string,archive_url:string,downloads_url:string,issues_url:string,pulls_url:string,milestones_url:string,notifications_url:string,labels_url:string,releases_url:string,deployments_url:string,created_at:string,updated_at:string,pushed_at:string,git_url:string,ssh_url:string,clone_url:string,svn_url:string,homepage:string,size:int,stargazers_count:int,watchers_count:int,language:string,has_issues:boolean,has_downloads:boolean,has_wiki:boolean,has_pages:boolean,forks_count:int,mirror_url:string,open_issues_count:int,forks:int,open_issues:int,watchers:int,default_branch:string\u003e\u003e,base:struct\u003clabel:string,ref:string,sha:string,user:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,repo:struct\u003cid:int,name:string,full_name:string,owner:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,private:boolean,html_url:string,description:string,fork:boolean,url:string,forks_url:string,keys_url:string,collaborators_url:string,teams_url:string,hooks_url:string,issue_events_url:string,events_url:string,assignees_url:string,branches_url:string,tags_url:string,blobs_url:string,git_tags_url:string,git_refs_url:string,trees_url:string,statuses_url:string,languages_url:string,stargazers_url:string,contributors_url:string,subscribers_url:string,subscription_url:string,commits_url:string,git_commits_url:string,comments_url:string,issue_comment_url:string,contents_url:string,compare_url:string,merges_url:string,archive_url:string,downloads_url:string,issues_url:string,pulls_url:string,milestones_url:string,notifications_url:string,labels_url:string,releases_url:string,deployments_url:string,created_at:string,updated_at:string,pushed_at:string,git_url:string,ssh_url:string,clone_url:string,svn_url:string,homepage:string,size:int,stargazers_count:int,watchers_count:int,language:string,has_issues:boolean,has_downloads:boolean,has_wiki:boolean,has_pages:boolean,forks_count:int,mirror_url:string,open_issues_count:int,forks:int,open_issues:int,watchers:int,default_branch:string\u003e\u003e,_links:struct\u003cself:struct\u003chref:string\u003e,html:struct\u003chref:string\u003e,issue:struct\u003chref:string\u003e,comments:struct\u003chref:string\u003e,review_comments:struct\u003chref:string\u003e,review_comment:struct\u003chref:string\u003e,commits:struct\u003chref:string\u003e,statuses:struct\u003chref:string\u003e\u003e,merged:boolean,mergeable:boolean,mergeable_state:string,merged_by:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,comments:int,review_comments:int,maintainer_can_modify:boolean,commits:int,additions:int,deletions:int,changed_files:int\u003e,ref_type:string,master_branch:string,description:string,pusher_type:string,issue:struct\u003curl:string,repository_url:string,labels_url:string,comments_url:string,events_url:string,html_url:string,id:int,number:int,title:string,user:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,labels:array\u003cstruct\u003cid:int,url:string,name:string,color:string,default:boolean\u003e\u003e,state:string,locked:boolean,assignee:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,assignees:array\u003cstruct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e\u003e,milestone:struct\u003curl:string,html_url:string,labels_url:string,id:int,number:int,title:string,description:string,creator:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,open_issues:int,closed_issues:int,state:string,created_at:string,updated_at:string,due_on:string,closed_at:string\u003e,comments:int,created_at:string,updated_at:string,closed_at:string,pull_request:struct\u003curl:string,html_url:string,diff_url:string,patch_url:string\u003e,body:string\u003e,comment:struct\u003curl:string,html_url:string,issue_url:string,id:int,user:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,created_at:string,updated_at:string,body:string,pull_request_review_id:int,diff_hunk:string,path:string,position:int,original_position:int,commit_id:string,original_commit_id:string,pull_request_url:string,_links:struct\u003cself:struct\u003chref:string\u003e,html:struct\u003chref:string\u003e,pull_request:struct\u003chref:string\u003e\u003e,line:int\u003e,pages:array\u003cstruct\u003cpage_name:string,title:string,summary:string,action:string,sha:string,html_url:string\u003e\u003e,release:struct\u003curl:string,assets_url:string,upload_url:string,html_url:string,id:int,tag_name:string,target_commitish:string,name:string,draft:boolean,author:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,prerelease:boolean,created_at:string,published_at:string,assets:array\u003cstruct\u003curl:string,id:int,name:string,label:string,uploader:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,content_type:string,state:string,size:int,download_count:int,created_at:string,updated_at:string,browser_download_url:string\u003e\u003e,tarball_url:string,zipball_url:string,body:string\u003e,member:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e\u003e"
+					},
+					{
+						"name": "public",
+						"type": "boolean"
+					},
+					{
+						"name": "created_at",
+						"type": "string"
+					},
+					{
+						"name": "org",
+						"type": "struct\u003cid:int,login:string,gravatar_id:string,url:string,avatar_url:string\u003e"
+					}
+				],
+				"location": "s3://aws-glue-datasets-us-east-1/examples/githubarchive/month/data/2017/01/17/",
+				"inputFormat": "org.apache.hadoop.mapred.TextInputFormat",
+				"outputFormat": "org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat",
+				"compressed": false,
+				"numberOfBuckets": -1,
+				"serdeInfo": {
+					"serializationLibrary": "org.openx.data.jsonserde.JsonSerDe",
+					"parameters": {
+						"paths": "actor,created_at,id,org,payload,public,repo,type"
+					}
+				},
+				"bucketColumns": [
+				],
+				"sortColumns": [
+				],
+				"parameters": {
+					"sizeKey": "450329329",
+					"objectCount": "24",
+					"recordCount": "191564",
+					"averageRecordSize": "2681",
+					"compressionType": "gzip",
+					"classification": "json",
+					"typeOfData": "file"
+				},
+				"storedAsSubDirectories": false
+			},
+			"parameters": {
+			}
+		},
+		{
+			"values": [
+				"2017",
+				"01",
+				"18"
+			],
+			"databaseName": "new_db",
+			"tableName": "data",
+			"creationTime": "Oct 17, 2019 10:24:45 PM",
+			"lastAccessTime": "Oct 17, 2019 10:24:44 PM",
+			"storageDescriptor": {
+				"columns": [
+					{
+						"name": "id",
+						"type": "string"
+					},
+					{
+						"name": "type",
+						"type": "string"
+					},
+					{
+						"name": "actor",
+						"type": "struct\u003cid:int,login:string,display_login:string,gravatar_id:string,url:string,avatar_url:string\u003e"
+					},
+					{
+						"name": "repo",
+						"type": "struct\u003cid:int,name:string,url:string\u003e"
+					},
+					{
+						"name": "payload",
+						"type": "struct\u003cpush_id:int,size:int,distinct_size:int,ref:string,head:string,before:string,commits:array\u003cstruct\u003csha:string,author:struct\u003cname:string,email:string\u003e,message:string,distinct:boolean,url:string\u003e\u003e,action:string,issue:struct\u003curl:string,repository_url:string,labels_url:string,comments_url:string,events_url:string,html_url:string,id:int,number:int,title:string,user:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,labels:array\u003cstruct\u003cid:int,url:string,name:string,color:string,default:boolean\u003e\u003e,state:string,locked:boolean,assignee:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,assignees:array\u003cstruct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e\u003e,milestone:struct\u003curl:string,html_url:string,labels_url:string,id:int,number:int,title:string,description:string,creator:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,open_issues:int,closed_issues:int,state:string,created_at:string,updated_at:string,due_on:string,closed_at:string\u003e,comments:int,created_at:string,updated_at:string,closed_at:string,pull_request:struct\u003curl:string,html_url:string,diff_url:string,patch_url:string\u003e,body:string\u003e,comment:struct\u003curl:string,html_url:string,issue_url:string,id:int,user:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,created_at:string,updated_at:string,body:string,pull_request_review_id:int,diff_hunk:string,path:string,position:int,original_position:int,commit_id:string,original_commit_id:string,pull_request_url:string,_links:struct\u003cself:struct\u003chref:string\u003e,html:struct\u003chref:string\u003e,pull_request:struct\u003chref:string\u003e\u003e,line:int\u003e,number:int,pull_request:struct\u003curl:string,id:int,html_url:string,diff_url:string,patch_url:string,issue_url:string,number:int,state:string,locked:boolean,title:string,user:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,body:string,created_at:string,updated_at:string,closed_at:string,merged_at:string,merge_commit_sha:string,assignee:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,assignees:array\u003cstruct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e\u003e,milestone:struct\u003curl:string,html_url:string,labels_url:string,id:int,number:int,title:string,description:string,creator:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,open_issues:int,closed_issues:int,state:string,created_at:string,updated_at:string,due_on:string,closed_at:string\u003e,commits_url:string,review_comments_url:string,review_comment_url:string,comments_url:string,statuses_url:string,head:struct\u003clabel:string,ref:string,sha:string,user:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,repo:struct\u003cid:int,name:string,full_name:string,owner:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,private:boolean,html_url:string,description:string,fork:boolean,url:string,forks_url:string,keys_url:string,collaborators_url:string,teams_url:string,hooks_url:string,issue_events_url:string,events_url:string,assignees_url:string,branches_url:string,tags_url:string,blobs_url:string,git_tags_url:string,git_refs_url:string,trees_url:string,statuses_url:string,languages_url:string,stargazers_url:string,contributors_url:string,subscribers_url:string,subscription_url:string,commits_url:string,git_commits_url:string,comments_url:string,issue_comment_url:string,contents_url:string,compare_url:string,merges_url:string,archive_url:string,downloads_url:string,issues_url:string,pulls_url:string,milestones_url:string,notifications_url:string,labels_url:string,releases_url:string,deployments_url:string,created_at:string,updated_at:string,pushed_at:string,git_url:string,ssh_url:string,clone_url:string,svn_url:string,homepage:string,size:int,stargazers_count:int,watchers_count:int,language:string,has_issues:boolean,has_downloads:boolean,has_wiki:boolean,has_pages:boolean,forks_count:int,mirror_url:string,open_issues_count:int,forks:int,open_issues:int,watchers:int,default_branch:string\u003e\u003e,base:struct\u003clabel:string,ref:string,sha:string,user:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,repo:struct\u003cid:int,name:string,full_name:string,owner:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,private:boolean,html_url:string,description:string,fork:boolean,url:string,forks_url:string,keys_url:string,collaborators_url:string,teams_url:string,hooks_url:string,issue_events_url:string,events_url:string,assignees_url:string,branches_url:string,tags_url:string,blobs_url:string,git_tags_url:string,git_refs_url:string,trees_url:string,statuses_url:string,languages_url:string,stargazers_url:string,contributors_url:string,subscribers_url:string,subscription_url:string,commits_url:string,git_commits_url:string,comments_url:string,issue_comment_url:string,contents_url:string,compare_url:string,merges_url:string,archive_url:string,downloads_url:string,issues_url:string,pulls_url:string,milestones_url:string,notifications_url:string,labels_url:string,releases_url:string,deployments_url:string,created_at:string,updated_at:string,pushed_at:string,git_url:string,ssh_url:string,clone_url:string,svn_url:string,homepage:string,size:int,stargazers_count:int,watchers_count:int,language:string,has_issues:boolean,has_downloads:boolean,has_wiki:boolean,has_pages:boolean,forks_count:int,mirror_url:string,open_issues_count:int,forks:int,open_issues:int,watchers:int,default_branch:string\u003e\u003e,_links:struct\u003cself:struct\u003chref:string\u003e,html:struct\u003chref:string\u003e,issue:struct\u003chref:string\u003e,comments:struct\u003chref:string\u003e,review_comments:struct\u003chref:string\u003e,review_comment:struct\u003chref:string\u003e,commits:struct\u003chref:string\u003e,statuses:struct\u003chref:string\u003e\u003e,merged:boolean,mergeable:boolean,mergeable_state:string,merged_by:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,comments:int,review_comments:int,maintainer_can_modify:boolean,commits:int,additions:int,deletions:int,changed_files:int\u003e,ref_type:string,master_branch:string,description:string,pusher_type:string,member:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,pages:array\u003cstruct\u003cpage_name:string,title:string,summary:string,action:string,sha:string,html_url:string\u003e\u003e,forkee:struct\u003cid:int,name:string,full_name:string,owner:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,private:boolean,html_url:string,description:string,fork:boolean,url:string,forks_url:string,keys_url:string,collaborators_url:string,teams_url:string,hooks_url:string,issue_events_url:string,events_url:string,assignees_url:string,branches_url:string,tags_url:string,blobs_url:string,git_tags_url:string,git_refs_url:string,trees_url:string,statuses_url:string,languages_url:string,stargazers_url:string,contributors_url:string,subscribers_url:string,subscription_url:string,commits_url:string,git_commits_url:string,comments_url:string,issue_comment_url:string,contents_url:string,compare_url:string,merges_url:string,archive_url:string,downloads_url:string,issues_url:string,pulls_url:string,milestones_url:string,notifications_url:string,labels_url:string,releases_url:string,deployments_url:string,created_at:string,updated_at:string,pushed_at:string,git_url:string,ssh_url:string,clone_url:string,svn_url:string,homepage:string,size:int,stargazers_count:int,watchers_count:int,language:string,has_issues:boolean,has_downloads:boolean,has_wiki:boolean,has_pages:boolean,forks_count:int,mirror_url:string,open_issues_count:int,forks:int,open_issues:int,watchers:int,default_branch:string,public:boolean\u003e,release:struct\u003curl:string,assets_url:string,upload_url:string,html_url:string,id:int,tag_name:string,target_commitish:string,name:string,draft:boolean,author:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,prerelease:boolean,created_at:string,published_at:string,assets:array\u003cstruct\u003curl:string,id:int,name:string,label:string,uploader:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,content_type:string,state:string,size:int,download_count:int,created_at:string,updated_at:string,browser_download_url:string\u003e\u003e,tarball_url:string,zipball_url:string,body:string\u003e\u003e"
+					},
+					{
+						"name": "public",
+						"type": "boolean"
+					},
+					{
+						"name": "created_at",
+						"type": "string"
+					},
+					{
+						"name": "org",
+						"type": "struct\u003cid:int,login:string,gravatar_id:string,url:string,avatar_url:string\u003e"
+					}
+				],
+				"location": "s3://aws-glue-datasets-us-east-1/examples/githubarchive/month/data/2017/01/18/",
+				"inputFormat": "org.apache.hadoop.mapred.TextInputFormat",
+				"outputFormat": "org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat",
+				"compressed": false,
+				"numberOfBuckets": -1,
+				"serdeInfo": {
+					"serializationLibrary": "org.openx.data.jsonserde.JsonSerDe",
+					"parameters": {
+						"paths": "actor,created_at,id,org,payload,public,repo,type"
+					}
+				},
+				"bucketColumns": [
+				],
+				"sortColumns": [
+				],
+				"parameters": {
+					"sizeKey": "448260227",
+					"objectCount": "24",
+					"recordCount": "198463",
+					"averageRecordSize": "2574",
+					"compressionType": "gzip",
+					"classification": "json",
+					"typeOfData": "file"
+				},
+				"storedAsSubDirectories": false
+			},
+			"parameters": {
+			}
+		},
+		{
+			"values": [
+				"2017",
+				"01",
+				"03"
+			],
+			"databaseName": "new_db",
+			"tableName": "data",
+			"creationTime": "Oct 17, 2019 10:24:45 PM",
+			"lastAccessTime": "Oct 17, 2019 10:24:45 PM",
+			"storageDescriptor": {
+				"columns": [
+					{
+						"name": "id",
+						"type": "string"
+					},
+					{
+						"name": "type",
+						"type": "string"
+					},
+					{
+						"name": "actor",
+						"type": "struct\u003cid:int,login:string,display_login:string,gravatar_id:string,url:string,avatar_url:string\u003e"
+					},
+					{
+						"name": "repo",
+						"type": "struct\u003cid:int,name:string,url:string\u003e"
+					},
+					{
+						"name": "payload",
+						"type": "struct\u003cpush_id:int,size:int,distinct_size:int,ref:string,head:string,before:string,commits:array\u003cstruct\u003csha:string,author:struct\u003cname:string,email:string\u003e,message:string,distinct:boolean,url:string\u003e\u003e,ref_type:string,master_branch:string,description:string,pusher_type:string,action:string,number:int,pull_request:struct\u003curl:string,id:int,html_url:string,diff_url:string,patch_url:string,issue_url:string,number:int,state:string,locked:boolean,title:string,user:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,body:string,created_at:string,updated_at:string,closed_at:string,merged_at:string,merge_commit_sha:string,assignee:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,assignees:array\u003cstruct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e\u003e,milestone:struct\u003curl:string,html_url:string,labels_url:string,id:int,number:int,title:string,description:string,creator:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,open_issues:int,closed_issues:int,state:string,created_at:string,updated_at:string,due_on:string,closed_at:string\u003e,commits_url:string,review_comments_url:string,review_comment_url:string,comments_url:string,statuses_url:string,head:struct\u003clabel:string,ref:string,sha:string,user:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,repo:struct\u003cid:int,name:string,full_name:string,owner:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,private:boolean,html_url:string,description:string,fork:boolean,url:string,forks_url:string,keys_url:string,collaborators_url:string,teams_url:string,hooks_url:string,issue_events_url:string,events_url:string,assignees_url:string,branches_url:string,tags_url:string,blobs_url:string,git_tags_url:string,git_refs_url:string,trees_url:string,statuses_url:string,languages_url:string,stargazers_url:string,contributors_url:string,subscribers_url:string,subscription_url:string,commits_url:string,git_commits_url:string,comments_url:string,issue_comment_url:string,contents_url:string,compare_url:string,merges_url:string,archive_url:string,downloads_url:string,issues_url:string,pulls_url:string,milestones_url:string,notifications_url:string,labels_url:string,releases_url:string,deployments_url:string,created_at:string,updated_at:string,pushed_at:string,git_url:string,ssh_url:string,clone_url:string,svn_url:string,homepage:string,size:int,stargazers_count:int,watchers_count:int,language:string,has_issues:boolean,has_downloads:boolean,has_wiki:boolean,has_pages:boolean,forks_count:int,mirror_url:string,open_issues_count:int,forks:int,open_issues:int,watchers:int,default_branch:string\u003e\u003e,base:struct\u003clabel:string,ref:string,sha:string,user:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,repo:struct\u003cid:int,name:string,full_name:string,owner:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,private:boolean,html_url:string,description:string,fork:boolean,url:string,forks_url:string,keys_url:string,collaborators_url:string,teams_url:string,hooks_url:string,issue_events_url:string,events_url:string,assignees_url:string,branches_url:string,tags_url:string,blobs_url:string,git_tags_url:string,git_refs_url:string,trees_url:string,statuses_url:string,languages_url:string,stargazers_url:string,contributors_url:string,subscribers_url:string,subscription_url:string,commits_url:string,git_commits_url:string,comments_url:string,issue_comment_url:string,contents_url:string,compare_url:string,merges_url:string,archive_url:string,downloads_url:string,issues_url:string,pulls_url:string,milestones_url:string,notifications_url:string,labels_url:string,releases_url:string,deployments_url:string,created_at:string,updated_at:string,pushed_at:string,git_url:string,ssh_url:string,clone_url:string,svn_url:string,homepage:string,size:int,stargazers_count:int,watchers_count:int,language:string,has_issues:boolean,has_downloads:boolean,has_wiki:boolean,has_pages:boolean,forks_count:int,mirror_url:string,open_issues_count:int,forks:int,open_issues:int,watchers:int,default_branch:string\u003e\u003e,_links:struct\u003cself:struct\u003chref:string\u003e,html:struct\u003chref:string\u003e,issue:struct\u003chref:string\u003e,comments:struct\u003chref:string\u003e,review_comments:struct\u003chref:string\u003e,review_comment:struct\u003chref:string\u003e,commits:struct\u003chref:string\u003e,statuses:struct\u003chref:string\u003e\u003e,merged:boolean,mergeable:boolean,mergeable_state:string,merged_by:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,comments:int,review_comments:int,maintainer_can_modify:boolean,commits:int,additions:int,deletions:int,changed_files:int\u003e,issue:struct\u003curl:string,repository_url:string,labels_url:string,comments_url:string,events_url:string,html_url:string,id:int,number:int,title:string,user:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,labels:array\u003cstruct\u003cid:int,url:string,name:string,color:string,default:boolean\u003e\u003e,state:string,locked:boolean,assignee:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,assignees:array\u003cstruct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e\u003e,milestone:struct\u003curl:string,html_url:string,labels_url:string,id:int,number:int,title:string,description:string,creator:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,open_issues:int,closed_issues:int,state:string,created_at:string,updated_at:string,due_on:string,closed_at:string\u003e,comments:int,created_at:string,updated_at:string,closed_at:string,body:string,pull_request:struct\u003curl:string,html_url:string,diff_url:string,patch_url:string\u003e\u003e,comment:struct\u003curl:string,html_url:string,issue_url:string,id:int,user:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,created_at:string,updated_at:string,body:string,pull_request_review_id:int,diff_hunk:string,path:string,position:int,original_position:int,commit_id:string,original_commit_id:string,pull_request_url:string,_links:struct\u003cself:struct\u003chref:string\u003e,html:struct\u003chref:string\u003e,pull_request:struct\u003chref:string\u003e\u003e,line:int\u003e,forkee:struct\u003cid:int,name:string,full_name:string,owner:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,private:boolean,html_url:string,description:string,fork:boolean,url:string,forks_url:string,keys_url:string,collaborators_url:string,teams_url:string,hooks_url:string,issue_events_url:string,events_url:string,assignees_url:string,branches_url:string,tags_url:string,blobs_url:string,git_tags_url:string,git_refs_url:string,trees_url:string,statuses_url:string,languages_url:string,stargazers_url:string,contributors_url:string,subscribers_url:string,subscription_url:string,commits_url:string,git_commits_url:string,comments_url:string,issue_comment_url:string,contents_url:string,compare_url:string,merges_url:string,archive_url:string,downloads_url:string,issues_url:string,pulls_url:string,milestones_url:string,notifications_url:string,labels_url:string,releases_url:string,deployments_url:string,created_at:string,updated_at:string,pushed_at:string,git_url:string,ssh_url:string,clone_url:string,svn_url:string,homepage:string,size:int,stargazers_count:int,watchers_count:int,language:string,has_issues:boolean,has_downloads:boolean,has_wiki:boolean,has_pages:boolean,forks_count:int,mirror_url:string,open_issues_count:int,forks:int,open_issues:int,watchers:int,default_branch:string,public:boolean\u003e,release:struct\u003curl:string,assets_url:string,upload_url:string,html_url:string,id:int,tag_name:string,target_commitish:string,name:string,draft:boolean,author:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,prerelease:boolean,created_at:string,published_at:string,assets:array\u003cstruct\u003curl:string,id:int,name:string,label:string,uploader:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,content_type:string,state:string,size:int,download_count:int,created_at:string,updated_at:string,browser_download_url:string\u003e\u003e,tarball_url:string,zipball_url:string,body:string\u003e,pages:array\u003cstruct\u003cpage_name:string,title:string,summary:string,action:string,sha:string,html_url:string\u003e\u003e,member:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e\u003e"
+					},
+					{
+						"name": "public",
+						"type": "boolean"
+					},
+					{
+						"name": "created_at",
+						"type": "string"
+					},
+					{
+						"name": "org",
+						"type": "struct\u003cid:int,login:string,gravatar_id:string,url:string,avatar_url:string\u003e"
+					}
+				],
+				"location": "s3://aws-glue-datasets-us-east-1/examples/githubarchive/month/data/2017/01/03/",
+				"inputFormat": "org.apache.hadoop.mapred.TextInputFormat",
+				"outputFormat": "org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat",
+				"compressed": false,
+				"numberOfBuckets": -1,
+				"serdeInfo": {
+					"serializationLibrary": "org.openx.data.jsonserde.JsonSerDe",
+					"parameters": {
+						"paths": "actor,created_at,id,org,payload,public,repo,type"
+					}
+				},
+				"bucketColumns": [
+				],
+				"sortColumns": [
+				],
+				"parameters": {
+					"sizeKey": "368429197",
+					"objectCount": "24",
+					"recordCount": "170951",
+					"averageRecordSize": "2448",
+					"compressionType": "gzip",
+					"classification": "json",
+					"typeOfData": "file"
+				},
+				"storedAsSubDirectories": false
+			},
+			"parameters": {
+			}
+		},
+		{
+			"values": [
+				"2017",
+				"01",
+				"09"
+			],
+			"databaseName": "new_db",
+			"tableName": "data",
+			"creationTime": "Oct 17, 2019 10:24:45 PM",
+			"lastAccessTime": "Oct 17, 2019 10:24:45 PM",
+			"storageDescriptor": {
+				"columns": [
+					{
+						"name": "id",
+						"type": "string"
+					},
+					{
+						"name": "type",
+						"type": "string"
+					},
+					{
+						"name": "actor",
+						"type": "struct\u003cid:int,login:string,display_login:string,gravatar_id:string,url:string,avatar_url:string\u003e"
+					},
+					{
+						"name": "repo",
+						"type": "struct\u003cid:int,name:string,url:string\u003e"
+					},
+					{
+						"name": "payload",
+						"type": "struct\u003cpush_id:int,size:int,distinct_size:int,ref:string,head:string,before:string,commits:array\u003cstruct\u003csha:string,author:struct\u003cname:string,email:string\u003e,message:string,distinct:boolean,url:string\u003e\u003e,action:string,number:int,pull_request:struct\u003curl:string,id:int,html_url:string,diff_url:string,patch_url:string,issue_url:string,number:int,state:string,locked:boolean,title:string,user:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,body:string,created_at:string,updated_at:string,closed_at:string,merged_at:string,merge_commit_sha:string,assignee:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,assignees:array\u003cstruct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e\u003e,milestone:struct\u003curl:string,html_url:string,labels_url:string,id:int,number:int,title:string,description:string,creator:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,open_issues:int,closed_issues:int,state:string,created_at:string,updated_at:string,due_on:string,closed_at:string\u003e,commits_url:string,review_comments_url:string,review_comment_url:string,comments_url:string,statuses_url:string,head:struct\u003clabel:string,ref:string,sha:string,user:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,repo:struct\u003cid:int,name:string,full_name:string,owner:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,private:boolean,html_url:string,description:string,fork:boolean,url:string,forks_url:string,keys_url:string,collaborators_url:string,teams_url:string,hooks_url:string,issue_events_url:string,events_url:string,assignees_url:string,branches_url:string,tags_url:string,blobs_url:string,git_tags_url:string,git_refs_url:string,trees_url:string,statuses_url:string,languages_url:string,stargazers_url:string,contributors_url:string,subscribers_url:string,subscription_url:string,commits_url:string,git_commits_url:string,comments_url:string,issue_comment_url:string,contents_url:string,compare_url:string,merges_url:string,archive_url:string,downloads_url:string,issues_url:string,pulls_url:string,milestones_url:string,notifications_url:string,labels_url:string,releases_url:string,deployments_url:string,created_at:string,updated_at:string,pushed_at:string,git_url:string,ssh_url:string,clone_url:string,svn_url:string,homepage:string,size:int,stargazers_count:int,watchers_count:int,language:string,has_issues:boolean,has_downloads:boolean,has_wiki:boolean,has_pages:boolean,forks_count:int,mirror_url:string,open_issues_count:int,forks:int,open_issues:int,watchers:int,default_branch:string\u003e\u003e,base:struct\u003clabel:string,ref:string,sha:string,user:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,repo:struct\u003cid:int,name:string,full_name:string,owner:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,private:boolean,html_url:string,description:string,fork:boolean,url:string,forks_url:string,keys_url:string,collaborators_url:string,teams_url:string,hooks_url:string,issue_events_url:string,events_url:string,assignees_url:string,branches_url:string,tags_url:string,blobs_url:string,git_tags_url:string,git_refs_url:string,trees_url:string,statuses_url:string,languages_url:string,stargazers_url:string,contributors_url:string,subscribers_url:string,subscription_url:string,commits_url:string,git_commits_url:string,comments_url:string,issue_comment_url:string,contents_url:string,compare_url:string,merges_url:string,archive_url:string,downloads_url:string,issues_url:string,pulls_url:string,milestones_url:string,notifications_url:string,labels_url:string,releases_url:string,deployments_url:string,created_at:string,updated_at:string,pushed_at:string,git_url:string,ssh_url:string,clone_url:string,svn_url:string,homepage:string,size:int,stargazers_count:int,watchers_count:int,language:string,has_issues:boolean,has_downloads:boolean,has_wiki:boolean,has_pages:boolean,forks_count:int,mirror_url:string,open_issues_count:int,forks:int,open_issues:int,watchers:int,default_branch:string\u003e\u003e,_links:struct\u003cself:struct\u003chref:string\u003e,html:struct\u003chref:string\u003e,issue:struct\u003chref:string\u003e,comments:struct\u003chref:string\u003e,review_comments:struct\u003chref:string\u003e,review_comment:struct\u003chref:string\u003e,commits:struct\u003chref:string\u003e,statuses:struct\u003chref:string\u003e\u003e,merged:boolean,mergeable:boolean,mergeable_state:string,merged_by:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,comments:int,review_comments:int,maintainer_can_modify:boolean,commits:int,additions:int,deletions:int,changed_files:int\u003e,issue:struct\u003curl:string,repository_url:string,labels_url:string,comments_url:string,events_url:string,html_url:string,id:int,number:int,title:string,user:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,labels:array\u003cstruct\u003cid:int,url:string,name:string,color:string,default:boolean\u003e\u003e,state:string,locked:boolean,assignee:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,assignees:array\u003cstruct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e\u003e,milestone:struct\u003curl:string,html_url:string,labels_url:string,id:int,number:int,title:string,description:string,creator:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,open_issues:int,closed_issues:int,state:string,created_at:string,updated_at:string,due_on:string,closed_at:string\u003e,comments:int,created_at:string,updated_at:string,closed_at:string,body:string,pull_request:struct\u003curl:string,html_url:string,diff_url:string,patch_url:string\u003e\u003e,ref_type:string,master_branch:string,description:string,pusher_type:string,comment:struct\u003curl:string,html_url:string,issue_url:string,id:int,user:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,created_at:string,updated_at:string,body:string,pull_request_review_id:int,diff_hunk:string,path:string,position:int,original_position:int,commit_id:string,original_commit_id:string,pull_request_url:string,_links:struct\u003cself:struct\u003chref:string\u003e,html:struct\u003chref:string\u003e,pull_request:struct\u003chref:string\u003e\u003e,line:int\u003e,release:struct\u003curl:string,assets_url:string,upload_url:string,html_url:string,id:int,tag_name:string,target_commitish:string,name:string,draft:boolean,author:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,prerelease:boolean,created_at:string,published_at:string,assets:array\u003cstruct\u003curl:string,id:int,name:string,label:string,uploader:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,content_type:string,state:string,size:int,download_count:int,created_at:string,updated_at:string,browser_download_url:string\u003e\u003e,tarball_url:string,zipball_url:string,body:string\u003e,forkee:struct\u003cid:int,name:string,full_name:string,owner:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,private:boolean,html_url:string,description:string,fork:boolean,url:string,forks_url:string,keys_url:string,collaborators_url:string,teams_url:string,hooks_url:string,issue_events_url:string,events_url:string,assignees_url:string,branches_url:string,tags_url:string,blobs_url:string,git_tags_url:string,git_refs_url:string,trees_url:string,statuses_url:string,languages_url:string,stargazers_url:string,contributors_url:string,subscribers_url:string,subscription_url:string,commits_url:string,git_commits_url:string,comments_url:string,issue_comment_url:string,contents_url:string,compare_url:string,merges_url:string,archive_url:string,downloads_url:string,issues_url:string,pulls_url:string,milestones_url:string,notifications_url:string,labels_url:string,releases_url:string,deployments_url:string,created_at:string,updated_at:string,pushed_at:string,git_url:string,ssh_url:string,clone_url:string,svn_url:string,homepage:string,size:int,stargazers_count:int,watchers_count:int,language:string,has_issues:boolean,has_downloads:boolean,has_wiki:boolean,has_pages:boolean,forks_count:int,mirror_url:string,open_issues_count:int,forks:int,open_issues:int,watchers:int,default_branch:string,public:boolean\u003e,pages:array\u003cstruct\u003cpage_name:string,title:string,summary:string,action:string,sha:string,html_url:string\u003e\u003e,member:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e\u003e"
+					},
+					{
+						"name": "public",
+						"type": "boolean"
+					},
+					{
+						"name": "created_at",
+						"type": "string"
+					},
+					{
+						"name": "org",
+						"type": "struct\u003cid:int,login:string,gravatar_id:string,url:string,avatar_url:string\u003e"
+					}
+				],
+				"location": "s3://aws-glue-datasets-us-east-1/examples/githubarchive/month/data/2017/01/09/",
+				"inputFormat": "org.apache.hadoop.mapred.TextInputFormat",
+				"outputFormat": "org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat",
+				"compressed": false,
+				"numberOfBuckets": -1,
+				"serdeInfo": {
+					"serializationLibrary": "org.openx.data.jsonserde.JsonSerDe",
+					"parameters": {
+						"paths": "actor,created_at,id,org,payload,public,repo,type"
+					}
+				},
+				"bucketColumns": [
+				],
+				"sortColumns": [
+				],
+				"parameters": {
+					"sizeKey": "416225743",
+					"objectCount": "24",
+					"recordCount": "181429",
+					"averageRecordSize": "2478",
+					"compressionType": "gzip",
+					"classification": "json",
+					"typeOfData": "file"
+				},
+				"storedAsSubDirectories": false
+			},
+			"parameters": {
+			}
+		},
+		{
+			"values": [
+				"2017",
+				"01",
+				"22"
+			],
+			"databaseName": "new_db",
+			"tableName": "data",
+			"creationTime": "Oct 17, 2019 10:24:45 PM",
+			"lastAccessTime": "Oct 17, 2019 10:24:45 PM",
+			"storageDescriptor": {
+				"columns": [
+					{
+						"name": "id",
+						"type": "string"
+					},
+					{
+						"name": "type",
+						"type": "string"
+					},
+					{
+						"name": "actor",
+						"type": "struct\u003cid:int,login:string,display_login:string,gravatar_id:string,url:string,avatar_url:string\u003e"
+					},
+					{
+						"name": "repo",
+						"type": "struct\u003cid:int,name:string,url:string\u003e"
+					},
+					{
+						"name": "payload",
+						"type": "struct\u003cref:string,ref_type:string,master_branch:string,description:string,pusher_type:string,push_id:int,size:int,distinct_size:int,head:string,before:string,commits:array\u003cstruct\u003csha:string,author:struct\u003cname:string,email:string\u003e,message:string,distinct:boolean,url:string\u003e\u003e,action:string,issue:struct\u003curl:string,repository_url:string,labels_url:string,comments_url:string,events_url:string,html_url:string,id:int,number:int,title:string,user:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,labels:array\u003cstruct\u003cid:int,url:string,name:string,color:string,default:boolean\u003e\u003e,state:string,locked:boolean,assignee:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,assignees:array\u003cstruct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e\u003e,milestone:struct\u003curl:string,html_url:string,labels_url:string,id:int,number:int,title:string,description:string,creator:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,open_issues:int,closed_issues:int,state:string,created_at:string,updated_at:string,due_on:string,closed_at:string\u003e,comments:int,created_at:string,updated_at:string,closed_at:string,pull_request:struct\u003curl:string,html_url:string,diff_url:string,patch_url:string\u003e,body:string\u003e,comment:struct\u003curl:string,html_url:string,issue_url:string,id:int,user:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,created_at:string,updated_at:string,body:string,pull_request_review_id:int,diff_hunk:string,path:string,position:int,original_position:int,commit_id:string,original_commit_id:string,pull_request_url:string,_links:struct\u003cself:struct\u003chref:string\u003e,html:struct\u003chref:string\u003e,pull_request:struct\u003chref:string\u003e\u003e,line:int\u003e,release:struct\u003curl:string,assets_url:string,upload_url:string,html_url:string,id:int,tag_name:string,target_commitish:string,name:string,draft:boolean,author:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,prerelease:boolean,created_at:string,published_at:string,assets:array\u003cstruct\u003curl:string,id:int,name:string,label:string,uploader:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,content_type:string,state:string,size:int,download_count:int,created_at:string,updated_at:string,browser_download_url:string\u003e\u003e,tarball_url:string,zipball_url:string,body:string\u003e,pages:array\u003cstruct\u003cpage_name:string,title:string,summary:string,action:string,sha:string,html_url:string\u003e\u003e,forkee:struct\u003cid:int,name:string,full_name:string,owner:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,private:boolean,html_url:string,description:string,fork:boolean,url:string,forks_url:string,keys_url:string,collaborators_url:string,teams_url:string,hooks_url:string,issue_events_url:string,events_url:string,assignees_url:string,branches_url:string,tags_url:string,blobs_url:string,git_tags_url:string,git_refs_url:string,trees_url:string,statuses_url:string,languages_url:string,stargazers_url:string,contributors_url:string,subscribers_url:string,subscription_url:string,commits_url:string,git_commits_url:string,comments_url:string,issue_comment_url:string,contents_url:string,compare_url:string,merges_url:string,archive_url:string,downloads_url:string,issues_url:string,pulls_url:string,milestones_url:string,notifications_url:string,labels_url:string,releases_url:string,deployments_url:string,created_at:string,updated_at:string,pushed_at:string,git_url:string,ssh_url:string,clone_url:string,svn_url:string,homepage:string,size:int,stargazers_count:int,watchers_count:int,language:string,has_issues:boolean,has_downloads:boolean,has_wiki:boolean,has_pages:boolean,forks_count:int,mirror_url:string,open_issues_count:int,forks:int,open_issues:int,watchers:int,default_branch:string,public:boolean\u003e,number:int,pull_request:struct\u003curl:string,id:int,html_url:string,diff_url:string,patch_url:string,issue_url:string,number:int,state:string,locked:boolean,title:string,user:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,body:string,created_at:string,updated_at:string,closed_at:string,merged_at:string,merge_commit_sha:string,assignee:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,assignees:array\u003cstruct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e\u003e,milestone:struct\u003curl:string,html_url:string,labels_url:string,id:int,number:int,title:string,description:string,creator:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,open_issues:int,closed_issues:int,state:string,created_at:string,updated_at:string,due_on:string,closed_at:string\u003e,commits_url:string,review_comments_url:string,review_comment_url:string,comments_url:string,statuses_url:string,head:struct\u003clabel:string,ref:string,sha:string,user:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,repo:struct\u003cid:int,name:string,full_name:string,owner:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,private:boolean,html_url:string,description:string,fork:boolean,url:string,forks_url:string,keys_url:string,collaborators_url:string,teams_url:string,hooks_url:string,issue_events_url:string,events_url:string,assignees_url:string,branches_url:string,tags_url:string,blobs_url:string,git_tags_url:string,git_refs_url:string,trees_url:string,statuses_url:string,languages_url:string,stargazers_url:string,contributors_url:string,subscribers_url:string,subscription_url:string,commits_url:string,git_commits_url:string,comments_url:string,issue_comment_url:string,contents_url:string,compare_url:string,merges_url:string,archive_url:string,downloads_url:string,issues_url:string,pulls_url:string,milestones_url:string,notifications_url:string,labels_url:string,releases_url:string,deployments_url:string,created_at:string,updated_at:string,pushed_at:string,git_url:string,ssh_url:string,clone_url:string,svn_url:string,homepage:string,size:int,stargazers_count:int,watchers_count:int,language:string,has_issues:boolean,has_downloads:boolean,has_wiki:boolean,has_pages:boolean,forks_count:int,mirror_url:string,open_issues_count:int,forks:int,open_issues:int,watchers:int,default_branch:string\u003e\u003e,base:struct\u003clabel:string,ref:string,sha:string,user:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,repo:struct\u003cid:int,name:string,full_name:string,owner:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,private:boolean,html_url:string,description:string,fork:boolean,url:string,forks_url:string,keys_url:string,collaborators_url:string,teams_url:string,hooks_url:string,issue_events_url:string,events_url:string,assignees_url:string,branches_url:string,tags_url:string,blobs_url:string,git_tags_url:string,git_refs_url:string,trees_url:string,statuses_url:string,languages_url:string,stargazers_url:string,contributors_url:string,subscribers_url:string,subscription_url:string,commits_url:string,git_commits_url:string,comments_url:string,issue_comment_url:string,contents_url:string,compare_url:string,merges_url:string,archive_url:string,downloads_url:string,issues_url:string,pulls_url:string,milestones_url:string,notifications_url:string,labels_url:string,releases_url:string,deployments_url:string,created_at:string,updated_at:string,pushed_at:string,git_url:string,ssh_url:string,clone_url:string,svn_url:string,homepage:string,size:int,stargazers_count:int,watchers_count:int,language:string,has_issues:boolean,has_downloads:boolean,has_wiki:boolean,has_pages:boolean,forks_count:int,mirror_url:string,open_issues_count:int,forks:int,open_issues:int,watchers:int,default_branch:string\u003e\u003e,_links:struct\u003cself:struct\u003chref:string\u003e,html:struct\u003chref:string\u003e,issue:struct\u003chref:string\u003e,comments:struct\u003chref:string\u003e,review_comments:struct\u003chref:string\u003e,review_comment:struct\u003chref:string\u003e,commits:struct\u003chref:string\u003e,statuses:struct\u003chref:string\u003e\u003e,merged:boolean,mergeable:boolean,mergeable_state:string,merged_by:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,comments:int,review_comments:int,maintainer_can_modify:boolean,commits:int,additions:int,deletions:int,changed_files:int\u003e,member:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e\u003e"
+					},
+					{
+						"name": "public",
+						"type": "boolean"
+					},
+					{
+						"name": "created_at",
+						"type": "string"
+					},
+					{
+						"name": "org",
+						"type": "struct\u003cid:int,login:string,gravatar_id:string,url:string,avatar_url:string\u003e"
+					}
+				],
+				"location": "s3://aws-glue-datasets-us-east-1/examples/githubarchive/month/data/2017/01/22/",
+				"inputFormat": "org.apache.hadoop.mapred.TextInputFormat",
+				"outputFormat": "org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat",
+				"compressed": false,
+				"numberOfBuckets": -1,
+				"serdeInfo": {
+					"serializationLibrary": "org.openx.data.jsonserde.JsonSerDe",
+					"parameters": {
+						"paths": "actor,created_at,id,org,payload,public,repo,type"
+					}
+				},
+				"bucketColumns": [
+				],
+				"sortColumns": [
+				],
+				"parameters": {
+					"sizeKey": "261151467",
+					"objectCount": "24",
+					"recordCount": "119394",
+					"averageRecordSize": "2133",
+					"compressionType": "gzip",
+					"classification": "json",
+					"typeOfData": "file"
+				},
+				"storedAsSubDirectories": false
+			},
+			"parameters": {
+			}
+		},
+		{
+			"values": [
+				"2017",
+				"01",
+				"28"
+			],
+			"databaseName": "new_db",
+			"tableName": "data",
+			"creationTime": "Oct 17, 2019 10:24:45 PM",
+			"lastAccessTime": "Oct 17, 2019 10:24:45 PM",
+			"storageDescriptor": {
+				"columns": [
+					{
+						"name": "id",
+						"type": "string"
+					},
+					{
+						"name": "type",
+						"type": "string"
+					},
+					{
+						"name": "actor",
+						"type": "struct\u003cid:int,login:string,display_login:string,gravatar_id:string,url:string,avatar_url:string\u003e"
+					},
+					{
+						"name": "repo",
+						"type": "struct\u003cid:int,name:string,url:string\u003e"
+					},
+					{
+						"name": "payload",
+						"type": "struct\u003cref:string,ref_type:string,master_branch:string,description:string,pusher_type:string,push_id:int,size:int,distinct_size:int,head:string,before:string,commits:array\u003cstruct\u003csha:string,author:struct\u003cname:string,email:string\u003e,message:string,distinct:boolean,url:string\u003e\u003e,action:string,issue:struct\u003curl:string,repository_url:string,labels_url:string,comments_url:string,events_url:string,html_url:string,id:int,number:int,title:string,user:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,labels:array\u003cstruct\u003cid:int,url:string,name:string,color:string,default:boolean\u003e\u003e,state:string,locked:boolean,assignee:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,assignees:array\u003cstruct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e\u003e,milestone:struct\u003curl:string,html_url:string,labels_url:string,id:int,number:int,title:string,description:string,creator:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,open_issues:int,closed_issues:int,state:string,created_at:string,updated_at:string,due_on:string,closed_at:string\u003e,comments:int,created_at:string,updated_at:string,closed_at:string,pull_request:struct\u003curl:string,html_url:string,diff_url:string,patch_url:string\u003e,body:string\u003e,comment:struct\u003curl:string,html_url:string,issue_url:string,id:int,user:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,created_at:string,updated_at:string,body:string,pull_request_review_id:int,diff_hunk:string,path:string,position:int,original_position:int,commit_id:string,original_commit_id:string,pull_request_url:string,_links:struct\u003cself:struct\u003chref:string\u003e,html:struct\u003chref:string\u003e,pull_request:struct\u003chref:string\u003e\u003e,line:int\u003e,forkee:struct\u003cid:int,name:string,full_name:string,owner:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,private:boolean,html_url:string,description:string,fork:boolean,url:string,forks_url:string,keys_url:string,collaborators_url:string,teams_url:string,hooks_url:string,issue_events_url:string,events_url:string,assignees_url:string,branches_url:string,tags_url:string,blobs_url:string,git_tags_url:string,git_refs_url:string,trees_url:string,statuses_url:string,languages_url:string,stargazers_url:string,contributors_url:string,subscribers_url:string,subscription_url:string,commits_url:string,git_commits_url:string,comments_url:string,issue_comment_url:string,contents_url:string,compare_url:string,merges_url:string,archive_url:string,downloads_url:string,issues_url:string,pulls_url:string,milestones_url:string,notifications_url:string,labels_url:string,releases_url:string,deployments_url:string,created_at:string,updated_at:string,pushed_at:string,git_url:string,ssh_url:string,clone_url:string,svn_url:string,homepage:string,size:int,stargazers_count:int,watchers_count:int,language:string,has_issues:boolean,has_downloads:boolean,has_wiki:boolean,has_pages:boolean,forks_count:int,mirror_url:string,open_issues_count:int,forks:int,open_issues:int,watchers:int,default_branch:string,public:boolean\u003e,pull_request:struct\u003curl:string,id:int,html_url:string,diff_url:string,patch_url:string,issue_url:string,number:int,state:string,locked:boolean,title:string,user:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,body:string,created_at:string,updated_at:string,closed_at:string,merged_at:string,merge_commit_sha:string,assignee:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,assignees:array\u003cstruct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e\u003e,milestone:struct\u003curl:string,html_url:string,labels_url:string,id:int,number:int,title:string,description:string,creator:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,open_issues:int,closed_issues:int,state:string,created_at:string,updated_at:string,due_on:string,closed_at:string\u003e,commits_url:string,review_comments_url:string,review_comment_url:string,comments_url:string,statuses_url:string,head:struct\u003clabel:string,ref:string,sha:string,user:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,repo:struct\u003cid:int,name:string,full_name:string,owner:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,private:boolean,html_url:string,description:string,fork:boolean,url:string,forks_url:string,keys_url:string,collaborators_url:string,teams_url:string,hooks_url:string,issue_events_url:string,events_url:string,assignees_url:string,branches_url:string,tags_url:string,blobs_url:string,git_tags_url:string,git_refs_url:string,trees_url:string,statuses_url:string,languages_url:string,stargazers_url:string,contributors_url:string,subscribers_url:string,subscription_url:string,commits_url:string,git_commits_url:string,comments_url:string,issue_comment_url:string,contents_url:string,compare_url:string,merges_url:string,archive_url:string,downloads_url:string,issues_url:string,pulls_url:string,milestones_url:string,notifications_url:string,labels_url:string,releases_url:string,deployments_url:string,created_at:string,updated_at:string,pushed_at:string,git_url:string,ssh_url:string,clone_url:string,svn_url:string,homepage:string,size:int,stargazers_count:int,watchers_count:int,language:string,has_issues:boolean,has_downloads:boolean,has_wiki:boolean,has_pages:boolean,forks_count:int,mirror_url:string,open_issues_count:int,forks:int,open_issues:int,watchers:int,default_branch:string\u003e\u003e,base:struct\u003clabel:string,ref:string,sha:string,user:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,repo:struct\u003cid:int,name:string,full_name:string,owner:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,private:boolean,html_url:string,description:string,fork:boolean,url:string,forks_url:string,keys_url:string,collaborators_url:string,teams_url:string,hooks_url:string,issue_events_url:string,events_url:string,assignees_url:string,branches_url:string,tags_url:string,blobs_url:string,git_tags_url:string,git_refs_url:string,trees_url:string,statuses_url:string,languages_url:string,stargazers_url:string,contributors_url:string,subscribers_url:string,subscription_url:string,commits_url:string,git_commits_url:string,comments_url:string,issue_comment_url:string,contents_url:string,compare_url:string,merges_url:string,archive_url:string,downloads_url:string,issues_url:string,pulls_url:string,milestones_url:string,notifications_url:string,labels_url:string,releases_url:string,deployments_url:string,created_at:string,updated_at:string,pushed_at:string,git_url:string,ssh_url:string,clone_url:string,svn_url:string,homepage:string,size:int,stargazers_count:int,watchers_count:int,language:string,has_issues:boolean,has_downloads:boolean,has_wiki:boolean,has_pages:boolean,forks_count:int,mirror_url:string,open_issues_count:int,forks:int,open_issues:int,watchers:int,default_branch:string\u003e\u003e,_links:struct\u003cself:struct\u003chref:string\u003e,html:struct\u003chref:string\u003e,issue:struct\u003chref:string\u003e,comments:struct\u003chref:string\u003e,review_comments:struct\u003chref:string\u003e,review_comment:struct\u003chref:string\u003e,commits:struct\u003chref:string\u003e,statuses:struct\u003chref:string\u003e\u003e,merged:boolean,mergeable:boolean,mergeable_state:string,merged_by:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,comments:int,review_comments:int,maintainer_can_modify:boolean,commits:int,additions:int,deletions:int,changed_files:int\u003e,number:int,release:struct\u003curl:string,assets_url:string,upload_url:string,html_url:string,id:int,tag_name:string,target_commitish:string,name:string,draft:boolean,author:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,prerelease:boolean,created_at:string,published_at:string,assets:array\u003cstruct\u003curl:string,id:int,name:string,label:string,uploader:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,content_type:string,state:string,size:int,download_count:int,created_at:string,updated_at:string,browser_download_url:string\u003e\u003e,tarball_url:string,zipball_url:string,body:string\u003e,member:struct\u003clogin:string,id:int,avatar_url:string,gravatar_id:string,url:string,html_url:string,followers_url:string,following_url:string,gists_url:string,starred_url:string,subscriptions_url:string,organizations_url:string,repos_url:string,events_url:string,received_events_url:string,type:string,site_admin:boolean\u003e,pages:array\u003cstruct\u003cpage_name:string,title:string,summary:string,action:string,sha:string,html_url:string\u003e\u003e\u003e"
+					},
+					{
+						"name": "public",
+						"type": "boolean"
+					},
+					{
+						"name": "created_at",
+						"type": "string"
+					},
+					{
+						"name": "org",
+						"type": "struct\u003cid:int,login:string,gravatar_id:string,url:string,avatar_url:string\u003e"
+					}
+				],
+				"location": "s3://aws-glue-datasets-us-east-1/examples/githubarchive/month/data/2017/01/28/",
+				"inputFormat": "org.apache.hadoop.mapred.TextInputFormat",
+				"outputFormat": "org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat",
+				"compressed": false,
+				"numberOfBuckets": -1,
+				"serdeInfo": {
+					"serializationLibrary": "org.openx.data.jsonserde.JsonSerDe",
+					"parameters": {
+						"paths": "actor,created_at,id,org,payload,public,repo,type"
+					}
+				},
+				"bucketColumns": [
+				],
+				"sortColumns": [
+				],
+				"parameters": {
+					"sizeKey": "226412171",
+					"objectCount": "24",
+					"recordCount": "102512",
+					"averageRecordSize": "2254",
+					"compressionType": "gzip",
+					"classification": "json",
+					"typeOfData": "file"
+				},
+				"storedAsSubDirectories": false
+			},
+			"parameters": {
+			}
+		}
+	]
+}

@@ -1,0 +1,35 @@
+Step 1: Create SNS Topic in Source AWS Account
+
+Step 2: Create Execution Role for Export Lambda Function
+
+Step 3: Deploy Export Lambda function in Source AWS Account
+
+Step 4: Create CloudWatch Event Rule in Source AWS Account and add Export Lambda function as the target
+
+Step 5: Cross-Account Permissions Step 1 of 2: in Source AWS Account. Grant permission to Target AWS Account to subscribe to the topic:
+
+	aws sns add-permission --label lambda-access --aws-account-id Target_AWS_Account \
+	--topic-arn arn:aws:sns:us-east-1:Source_AWS_Account:GlueExportSNSTopic \
+	--action-name Subscribe ListSubscriptionsByTopic Receive
+
+Step 6: Cross-Account Permissions Step 2 of 2: From Target AWS Account, add the Lambda permission to allow invocation from Amazon SNS.
+
+	aws lambda add-permission --function-name GlueSynchronizerLambda \
+	--source-arn arn:aws:sns:us-east-1:Source_AWS_Account:GlueExportSNSTopic \
+	--statement-id sns-x-account --action "lambda:InvokeFunction" \
+	--principal sns.amazonaws.com --profile user_sa
+
+Step 7: Create a Subscription
+
+From target account, subscribe the Lambda function to the topic. When a message is sent to the lambda-x-account topic in account A, Amazon SNS invokes the SNS-X-Account function in Target AWS Account.
+
+	aws sns subscribe --protocol lambda \
+	--topic-arn arn:aws:sns:us-east-1:Source_AWS_Account:GlueExportSNSTopic \
+	--notification-endpoint arn:aws:lambda:us-east-1:Target_AWS_Account:function:GlueSynchronizerLambda \
+	--profile user_sa
+	
+	https://docs.aws.amazon.com/lambda/latest/dg/with-sns-example.html#with-sns-create-x-account-permissions
+
+Step 8: Create Execution Role for Import Lambda Function
+
+Step 9: Deploy Import Lambda Function in Target AWS Account

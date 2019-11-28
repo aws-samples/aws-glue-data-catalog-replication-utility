@@ -172,10 +172,20 @@ The deployment sequence is follows:
 23. Add Dead Letter SQS Queue as a trigger to **DLQImportDatabaseOrTable** Lambda Function. 
 	1. Batch size = 1
 
+## Advantages
+This solution was designed around 3 main tenets, which are simplicity, scalability, and cost-effectiveness. 
+The following are direct benefits:
+
+1.	Target AWS accounts are independent allowing the solution to scale efficiently.
+2.	The target accounts always see the latest table information.
+3.	Light weight and dependable at scale.
+4.	The implementation is fully customizable.
+
 ## Limitations
 Following are the primary limitations:
-1. This utility is not intended to be used for real-time synchronization of AWS Glue data catalogs. 
-2. This utility does not attempt to resolve database and table name conflicts which may result in undesirable behavior.
+1. This utility is not intended to be used for real-time replication.
+2. This utility is not intended to be used for two-way replication between AWS Accounts. 
+3. This utility does not attempt to resolve database and table name conflicts which may result in undesirable behavior.
 
 ## Running this solution as a Scheduled Job 
 This solution supports the following use cases:
@@ -189,18 +199,18 @@ Running this solution as a scheduled job means a couple of things 1) replicate n
 As far as database and tables are concerned, the action taken by Import Lambdas depend on the state of Glue Data Catalog in target account. 
 Those actions are summarized in the following table. 
 
-|Input Message Type	| State in Target Glue Data Catalog | Action Taken |
+|Input Message Type	| State in Target Glue Data Catalog | Action Taken in Target Account |
 |-------------------|-----------------------------------|------------  |
-|Database	| Database exist already					    | Skip the message |
+|Database	| Database exist already					| Skip the message |
 |Database	| Database does not exist 					| Create Database  |
 |Table		| Table exist already						| Update Table     | 
 |Table		| Table does not exist 						| Create Table     |
 
 As far as partitions are concerned, the process involves the following steps:
 
-|Partitions in Export	| State in Target Glue Data Catalog | Action Taken |
+|Partitions in Export	| State in Target Glue Data Catalog | Action Taken in Target Account|
 |-----------------------|-----------------------------------|------------  |
-|Partitions DO NOT Exist| Target Table has no partitions	| No action to take |
+|Partitions DO NOT Exist| Target Table has no partitions	| No action taken |
 |Partitions DO NOT Exist| Target Table has partitions	    | Delete current partitions |
 |Partitions Exist	    | Target Table has no partitions	| Create new partitions |
 |Partitions Exist	    | Target Table has partitions		| Delete current partitions, create new partitions |

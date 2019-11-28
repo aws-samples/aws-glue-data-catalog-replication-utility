@@ -27,14 +27,14 @@ The following AWS services are required to deploy this replication utility.
  -  Cross-account permissions on S3 Bucket for Large Table Import Lambda's IAM role.
 
 ## Lambda Functions Overview
-| Class                                                         | Overview 	   | Lambda Handler			|
-|-------------------------------------------------------------- | -------------|------------------------|	
+| Class                                                         | Overview 	   |
+|-------------------------------------------------------------- | -------------|	
 | [GDCReplicationPlanner](./src/main/java/com/amazonaws/gdcreplication/lambda/GDCReplicationPlanner.java) | Lambda Function to export list of databases from Glue Data Catalog in Source Account. | |
-| [ExportDatabaseWithTables](./src/main/java/com/amazonaws/gdcreplication/lambda/ExportDatabaseWithTables.java) | Lambda Function to export a database and all of its tables from Glue Data Catalog in Source Account.| ```com.amazonaws.gdcreplication.lambda.ExportDatabaseWithTables``` |
-| [ExportLargeTable](./src/main/java/com/amazonaws/gdcreplication/lambda/ExportLargeTable.java) | Lambda Function to export a large table (table with more than 10 partitions) from Glue Data Catalog in Source Account.| ```com.amazonaws.gdcreplication.lambda.ExportLargeTable``` |
-| [ImportDatabaseOrTable](./src/main/java/com/amazonaws/gdcreplication/lambda/ImportDatabaseOrTable.java) | Lambda Function to import a database or a table to Glue Data Catalog in Target Account.| ```com.amazonaws.gdcreplication.lambda.ImportDatabaseOrTable``` |
-| [ImportLargeTable](./src/main/java/com/amazonaws/gdcreplication/lambda/ImportLargeTable.java) | Lambda Function to import a large table to Glue Data Catalog in Target Account.| ```com.amazonaws.gdcreplication.lambda.ImportLargeTable``` |
-| [DLQImportDatabaseOrTable](./src/main/java/com/amazonaws/gdcreplication/lambda/DLQImportDatabaseOrTable.java) | Dead Letter Queue Processing - Lambda Function to import a database or a table to Glue Data Catalog in Target Account.| ```com.amazonaws.gdcreplication.lambda.DLQImportDatabaseOrTable``` |
+| [ExportDatabaseWithTables](./src/main/java/com/amazonaws/gdcreplication/lambda/ExportDatabaseWithTables.java) | Lambda Function to export a database and all of its tables from Glue Data Catalog in Source Account.|
+| [ExportLargeTable](./src/main/java/com/amazonaws/gdcreplication/lambda/ExportLargeTable.java) | Lambda Function to export a large table (table with more than 10 partitions) from Glue Data Catalog in Source Account.|
+| [ImportDatabaseOrTable](./src/main/java/com/amazonaws/gdcreplication/lambda/ImportDatabaseOrTable.java) | Lambda Function to import a database or a table to Glue Data Catalog in Target Account.|
+| [ImportLargeTable](./src/main/java/com/amazonaws/gdcreplication/lambda/ImportLargeTable.java) | Lambda Function to import a large table to Glue Data Catalog in Target Account.|
+| [DLQImportDatabaseOrTable](./src/main/java/com/amazonaws/gdcreplication/lambda/DLQImportDatabaseOrTable.java) | Dead Letter Queue Processing - Lambda Function to import a database or a table to Glue Data Catalog in Target Account.| 
 
 ## Lambda Environment Variables Summary
 ### GDCReplicationPlanner Lambda
@@ -109,10 +109,19 @@ The deployment sequence is follows:
 4. Create DynamoDB tables in Source Account
 5. Create Lambda Execution Role in Source Account to be used by Lambda Functions in Source Account
 6. Deploy **GDCReplicationPlanner** Lambda Function in Source Account 
-   Lambda Handler = ```com.amazonaws.gdcreplication.lambda.GDCReplicationPlanner```s
+   	Lambda Handler = ```com.amazonaws.gdcreplication.lambda.GDCReplicationPlanner```,
+   	Lambda Execution Timeout = 3 minutes, 
+	Memory = 128 MB.
 7. Deploy **ExportDatabaseWithTables** Lambda Function in Source Account 
+   	Lambda Handler = ```com.amazonaws.gdcreplication.lambda.ExportDatabaseWithTables```,
+   	Lambda Execution Timeout = 3 minutes, 
+	Memory = 192 MB.
 8. Deploy **ExportLargeTable** Lambda Function in Source Account
-9. Add **Large Table SQS Queue** as a trigger to **ExportLargeTable** Lambda Function
+	Lambda Handler = ```com.amazonaws.gdcreplication.lambda.ExportLargeTable```,
+	Lambda Execution Timeout = 3 minutes, 
+	Memory = 256 MB.
+9. Add **Large Table SQS Queue** as a trigger to **ExportLargeTable** Lambda Function.
+	Batch size = 1
 10. Add SNS Topic as a trigger to **ExportDatabaseWithTables** Lambda function
 11. Create CloudWatch Event Rule in Source Account and add Export Lambda function as the target
 12. Cross-Account Permissions Step 1 of 2: in Source Account. Grant permissions to account B to subscribe to the second SNS Topic:
@@ -131,8 +140,16 @@ The deployment sequence is follows:
 	--statement-id sns-x-account --action "lambda:InvokeFunction" \
 	--principal sns.amazonaws.com --profile user_sa
 	```
-	
-14. Create a Subscription. From target account, subscribe the Lambda function to the topic. When a message is sent to the lambda-x-account topic in account A, Amazon SNS invokes the SNS-X-Account function in account B.
+
+14. Create DynamoDB tables in Target Account
+15. Create SQS queue (Large Table SQS Queue) of type Standard - this is for dead letter queue processing. Default Visibility Timeout = 20 seconds
+16. Create SQS (Dead Letter Queue) queue of type Standard - this is to process schema for large tables 
+17. Create Lambda Execution Role in Target Account to be used by Lambda Functions in Target Accounts. This needs to have Cross-Account permissions to the S3 bucket created in Step # 2.
+18. Deploy **ImportDatabaseOrTable** Lambda Function in Target Account 
+	Lambda Handler = ```com.amazonaws.gdcreplication.lambda.ImportDatabaseOrTable```,
+	Lambda Execution Timeout = 3 minutes, 
+	Memory = 192 MB.
+19. Create a Subscription. From target account, subscribe the Lambda function to the topic. When a message is sent to the lambda-x-account topic in account A, Amazon SNS invokes the SNS-X-Account function in account B.
 	
 	```
 	aws sns subscribe --protocol lambda \
@@ -142,16 +159,18 @@ The deployment sequence is follows:
 	```
 	Additional References:
 	 - https://docs.aws.amazon.com/lambda/latest/dg/with-sns-example.html#with-sns-create-x-account-permissions
-
-15. Create DynamoDB tables in Target Account
-16. Create SQS queue (Large Table SQS Queue) of type Standard - this is for dead letter queue processing. Default Visibility Timeout = 20 seconds
-17. Create SQS (Dead Letter Queue) queue of type Standard - this is to process schema for large tables 
-18. Create Lambda Execution Role in Target Account to be used by Lambda Functions in Target Accounts. This needs to have Cross-Account permissions to the S3 bucket created in Step # 2.
-19. Deploy **ImportDatabaseOrTable** Lambda Function in Target Account 
 20. Deploy **ImportLargeTable** Lambda Function in Target Account 
-21. Add **Large Table SQS Queue** as a trigger to **ImportLargeTable** Lambda Function. Batch size =1, Lambda Execution Timeout = 3 minutes, Memory = 192 MB.
+	Lambda Handler =  ```com.amazonaws.gdcreplication.lambda.ImportLargeTable```,
+	Lambda Execution Timeout = 3 minutes, 
+	Memory = 256 MB.
+21. Add **Large Table SQS Queue** as a trigger to **ImportLargeTable** Lambda Function. 
+	Batch size = 1
 22. Deploy **DLQImportDatabaseOrTable** Lambda Function in Target Account
-23. Add Dead Letter SQS Queue as a trigger to **DLQImportDatabaseOrTable** Lambda Function. Batch size =1, Lambda Execution Timeout = 15 seconds, Memory = 192 MB.
+	Lambda Handler = ```com.amazonaws.gdcreplication.lambda.DLQImportDatabaseOrTable```, 
+	Lambda Execution Timeout = 3 minutes, 
+	Memory = 192 MB.
+23. Add Dead Letter SQS Queue as a trigger to **DLQImportDatabaseOrTable** Lambda Function. 
+	Batch size = 1
 
 ## Running this solution as a Scheduled Job 
 This solution supports the following use cases:

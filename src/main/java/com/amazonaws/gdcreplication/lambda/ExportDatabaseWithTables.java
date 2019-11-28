@@ -45,7 +45,7 @@ import com.google.gson.JsonSyntaxException;
  * 
  * For each message, it takes the following actions:
  * 1. Parse the message to database
- * 2, Check if a database exist in Glue
+ * 2. Check if a database exist in Glue
  * 3. If exist, fetches all tables for the database
  * 
  * For each table, it takes the following actions:

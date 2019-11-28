@@ -6,7 +6,8 @@ This Utility is used to replicate Glue Data Catalog from one AWS account to anot
 ## Build Instructions
 
 1. The source code has Maven nature, so if you have Maven locally then you can build it using standard Maven commands e.g. ```mvn -X clean install```. or use the options available in your IDE
-2. Use the generated Jar file to deploy a Lambda function
+2. The above step generates a Jar file e.g. aws-glue-data-catalog-replication-utility-1.0.0.jar 
+3. Use this Jar file and deploy AWS Lambda functions to your AWS Accounts as described in Section [Lambda Functions Overview](#Lambda-Functions-Overview) 
 
 ## AWS Service Requirements
 The following AWS services are required to deploy this replication utility.
@@ -27,14 +28,14 @@ The following AWS services are required to deploy this replication utility.
  -  Cross-account permissions on S3 Bucket for Large Table Import Lambda's IAM role.
 
 ## Lambda Functions Overview
-| Class                                                         | Overview 	   |
-|-------------------------------------------------------------- | -------------- |
-| [GDCReplicationPlanner](./src/main/java/com/amazonaws/gdcreplication/lambda/GDCReplicationPlanner.java) | Lambda Function to export list of databases from Glue Data Catalog in Source Account.|
-| [ExportDatabaseWithTables](./src/main/java/com/amazonaws/gdcreplication/lambda/ExportDatabaseWithTables.java) | Lambda Function to export a database and all of its tables from Glue Data Catalog in Source Account.|
-| [ExportLargeTable](./src/main/java/com/amazonaws/gdcreplication/lambda/ExportLargeTable.java) | Lambda Function to export a large table (table with more than 10 partitions) from Glue Data Catalog in Source Account.|
-| [ImportDatabaseOrTable](./src/main/java/com/amazonaws/gdcreplication/lambda/ImportDatabaseOrTable.java) | Lambda Function to import a database or a table to Glue Data Catalog in Target Account.|
-| [ImportLargeTable](./src/main/java/com/amazonaws/gdcreplication/lambda/ImportLargeTable.java) | Lambda Function to import a large table to Glue Data Catalog in Target Account.|
-| [DLQImportDatabaseOrTable](./src/main/java/com/amazonaws/gdcreplication/lambda/DLQImportDatabaseOrTable.java) | Dead Letter Queue Processing - Lambda Function to import a database or a table to Glue Data Catalog in Target Account.|
+| Class                                                         | Overview 	   | Lambda Handler			|
+|-------------------------------------------------------------- | -------------|------------------------|	
+| [GDCReplicationPlanner](./src/main/java/com/amazonaws/gdcreplication/lambda/GDCReplicationPlanner.java) | Lambda Function to export list of databases from Glue Data Catalog in Source Account.| ```com.amazonaws.gdcreplication.lambda.GDCReplicationPlanner``` |
+| [ExportDatabaseWithTables](./src/main/java/com/amazonaws/gdcreplication/lambda/ExportDatabaseWithTables.java) | Lambda Function to export a database and all of its tables from Glue Data Catalog in Source Account.| ```com.amazonaws.gdcreplication.lambda.ExportDatabaseWithTables``` |
+| [ExportLargeTable](./src/main/java/com/amazonaws/gdcreplication/lambda/ExportLargeTable.java) | Lambda Function to export a large table (table with more than 10 partitions) from Glue Data Catalog in Source Account.| ```com.amazonaws.gdcreplication.lambda.ExportLargeTable``` |
+| [ImportDatabaseOrTable](./src/main/java/com/amazonaws/gdcreplication/lambda/ImportDatabaseOrTable.java) | Lambda Function to import a database or a table to Glue Data Catalog in Target Account.| ```com.amazonaws.gdcreplication.lambda.ImportDatabaseOrTable``` |
+| [ImportLargeTable](./src/main/java/com/amazonaws/gdcreplication/lambda/ImportLargeTable.java) | Lambda Function to import a large table to Glue Data Catalog in Target Account.| ```com.amazonaws.gdcreplication.lambda.ImportLargeTable``` |
+| [DLQImportDatabaseOrTable](./src/main/java/com/amazonaws/gdcreplication/lambda/DLQImportDatabaseOrTable.java) | Dead Letter Queue Processing - Lambda Function to import a database or a table to Glue Data Catalog in Target Account.| ```com.amazonaws.gdcreplication.lambda.DLQImportDatabaseOrTable``` |
 
 ## Lambda Environment Variables Summary
 ### GDCReplicationPlanner Lambda

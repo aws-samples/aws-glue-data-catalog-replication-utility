@@ -1,0 +1,37 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "glue:SearchTables",
+                "glue:BatchCreatePartition",
+                "glue:GetDataCatalogEncryptionSettings",
+                "glue:GetTableVersions",
+                "glue:GetPartitions",
+                "glue:BatchDeletePartition",
+                "glue:DeleteTableVersion",
+                "glue:UpdateTable",
+                "glue:GetSecurityConfiguration",
+                "glue:GetResourcePolicy",
+                "glue:GetTableVersion",
+                "glue:CreatePartition",
+                "glue:UpdatePartition",
+                "glue:UpdateDatabase",
+                "glue:CreateTable",
+                "glue:GetTables",
+                "glue:BatchGetPartition",
+                "glue:GetSecurityConfigurations",
+                "glue:GetDatabases",
+                "glue:GetTable",
+                "glue:GetDatabase",
+                "glue:GetPartition",
+                "glue:CreateDatabase",
+                "glue:BatchDeleteTableVersion",
+                "glue:DeletePartition"
+            ],
+            "Resource": "*"
+        }
+    ]
+}

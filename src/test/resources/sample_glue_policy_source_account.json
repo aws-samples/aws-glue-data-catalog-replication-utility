@@ -1,0 +1,22 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "glue:GetDatabase",
+                "glue:GetPartition",
+                "glue:GetTableVersion",
+                "glue:GetTables",
+                "glue:GetTableVersions",
+                "glue:GetPartitions",
+                "glue:BatchDeleteTableVersion",
+                "glue:BatchGetPartition",
+                "glue:GetDatabases",
+                "glue:GetTable"
+            ],
+            "Resource": "*"
+        }
+    ]
+}

@@ -9,7 +9,7 @@ This Utility is used to replicate Glue Data Catalog from one AWS account to anot
 2. The above step generates a Jar file e.g. aws-glue-data-catalog-replication-utility-1.0.0.jar
 
 ## AWS Service Requirements
-The following AWS services are required to deploy this replication utility.
+This utility requires the following AWS services
 ### Source Account
  - 3 export Lambda Functions 
  - 1 Lambda Execution IAM Role

@@ -51,7 +51,7 @@ This utility requires the following AWS services
 	2. https://docs.aws.amazon.com/AmazonS3/latest/dev/example-walkthroughs-managing-access-example2.html
 
 4. Create one SQS Queue
-	1. Queue Name = ```LargeTableSQSQueue```
+	1. Queue Name = e.g. ```LargeTableSQSQueue```
 	2. Queue Type = Standard
 	3. Default Visibility Timeout = e.g. 3 minutes 15 seconds. **Note:** It must be higher than execution timeout of **ExportLargeTable** Lambda Function
 
@@ -136,12 +136,12 @@ This utility requires the following AWS services
 2. Create SQS Queue
 	1. Queue Name = ```LargeTableSQSQueue```
 	2. Queue Type = Standard
-	3. Default Visibility Timeout = 3 minutes 15 seconds. **Note:** It must be higher than execution timeout of **ImportLargeTable** Lambda Function
+	3. Default Visibility Timeout = e.g. 3 minutes 15 seconds. **Note:** It must be higher than execution timeout of **ImportLargeTable** Lambda Function
 
 3. Create SQS Queue - dead letter queue processing 
 	1. Queue Name = ```DeadLetterQueue```
 	2. Queue Type = Standard
-	3. Default Visibility Timeout = 3 minutes 15 seconds
+	3. Default Visibility Timeout = e.g. 3 minutes 15 seconds
 
 4. Create Lambda Execution IAM Role and attach it to the Lambda functions deployed in Target Account. This role needs to have multiple permissions. Refer the following IAM policies to know about required permissions:
 	1. You can use AWS managed policy called **AWSLambdaExecute** (Policy ARN # arn:aws:iam::aws:policy/AWSLambdaExecute)
@@ -208,8 +208,8 @@ This utility requires the following AWS services
 	1. Runtime = Java 8
 	1. Function package = Use the Jar file generated. Refer section [Build Instructions](#Build-Instructions)
 	2. Lambda Handler = ```com.amazonaws.gdcreplication.lambda.DLQImportDatabaseOrTable``` 
-	3. Timeout = 3 minutes
-	4. Memory = 192 MB
+	3. Timeout = e.g. 3 minutes
+	4. Memory = e.g. 192 MB
 	5. Environment variable = as defined in the following table
 
 	| Variable Name                    	| Variable Value          |

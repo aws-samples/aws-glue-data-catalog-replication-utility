@@ -68,7 +68,7 @@ This utility requires the following AWS services
 	4. [sample_glue_policy_source_account](./src/test/resources/sample_glue_policy_source_account.json)
 	5. [sample_ddb_policy_source_and_target_accounts](./src/test/resources/sample_ddb_policy_source_and_target_accounts.json)
 
-6. Deploy **GDCReplicationPlannerLambda** Function
+6. Deploy **GDCReplicationPlannerLambda** function
    	1. Function package = Use the Jar file generated. Refer section [Build Instructions](#Build-Instructions)
    	2. Lambda Handler = ```com.amazonaws.gdcreplication.lambda.GDCReplicationPlanner```
    	3. Lambda Execution Timeout = 3 minutes
@@ -84,7 +84,7 @@ This utility requires the following AWS services
 	| region                           	| e.g. us-east-1               	|
 	| sns_topic_arn_gdc_replication_planner |  SNS Topic ARN for **ReplicationPlannerSNSTopic**    |
 
-7. Deploy **ExportLambda** Function
+7. Deploy **ExportLambda** function
    	1. Function package = Use the Jar file generated. Refer section [Build Instructions](#Build-Instructions)
    	2. Lambda Handler = ```com.amazonaws.gdcreplication.lambda.ExportDatabaseWithTables```
    	3. Lambda Execution Timeout = 3 minutes
@@ -100,9 +100,9 @@ This utility requires the following AWS services
 	| sns_topic_arn_export_dbs_tables   | SNS Topic ARN for **SchemaDistributionSNSTopic**    |
 	| sqs_queue_url_large_tables   		| SQS Queue URL for **LargeTableSQSQueue**    |
 
-8. Add **ReplicationPlannerSNSTopic** as a trigger to **ExportLambda** Function.
+8. Add **ReplicationPlannerSNSTopic** as a trigger to **ExportLambda** function
 
-9. Deploy **ExportLargeTableLambda** Function
+9. Deploy **ExportLargeTableLambda** function
 	1. Function package = Use the Jar file generated. Refer section [Build Instructions](#Build-Instructions)
 	2. Lambda Handler = ```com.amazonaws.gdcreplication.lambda.ExportLargeTable```
 	3. Lambda Execution Timeout = 3 minutes
@@ -116,7 +116,7 @@ This utility requires the following AWS services
 	| region             	            | e.g. us-east-1  	       |
 	| sns_topic_arn_export_dbs_tables   | SNS Topic ARN for **SchemaDistributionSNSTopic**   |
 
-10. Add **LargeTableSQSQueue** as a trigger to **ExportLargeTableLambda** Function
+10. Add **LargeTableSQSQueue** as a trigger to **ExportLargeTableLambda** function
 	1. Batch size = 1
 
 11. Cross-Account permissions in Source Account. Grant permissions to Target Account to subscribe to the second SNS Topic:
@@ -152,7 +152,7 @@ This utility requires the following AWS services
 	3. [sample_glue_policy_target_account](./src/test/resources/sample_glue_policy_target_account.json)
 	4. [sample_ddb_policy_source_and_target_accounts](./src/test/resources/sample_ddb_policy_source_and_target_accounts.json)
 
-5. Deploy **ImportLambda** Function
+5. Deploy **ImportLambda** function
 	1. Function package = Use the Jar file generated. Refer section [Build Instructions](#Build-Instructions)
 	2. Lambda Handler = ```com.amazonaws.gdcreplication.lambda.ImportDatabaseOrTable```
 	3. Lambda Execution Timeout = 3 minutes
@@ -188,7 +188,7 @@ This utility requires the following AWS services
 	Additional References:
 	 - https://docs.aws.amazon.com/lambda/latest/dg/with-sns-example.html#with-sns-create-x-account-permissions
 
-8. Deploy **ImportLargeTableLambda** Function
+8. Deploy **ImportLargeTableLambda** function
 	1. Function package = Use the Jar file generated. Refer section [Build Instructions](#Build-Instructions)
 	2. Lambda Handler =  ```com.amazonaws.gdcreplication.lambda.ImportLargeTable```
 	3. Lambda Execution Timeout = 3 minutes
@@ -202,7 +202,7 @@ This utility requires the following AWS services
 	| skip_archive             	        | true 	                 |
 	| region             	            | e.g. us-east-1  	     |
 
-9. Add **LargeTableSQSQueue** as a trigger to **ImportLargeTableLambda** Lambda Function
+9. Add **LargeTableSQSQueue** as a trigger to **ImportLargeTableLambda** function
 	1. Batch size = 1
 
 10. Deploy **DLQProcessorLambda** Function
@@ -221,7 +221,7 @@ This utility requires the following AWS services
 	| dlq_url_sqs                       | SQS Queue URL for **DeadLetterQueue**   |
 	| region             	            | e.g. us-east-1  	      |
 
-11. Add Dead Letter SQS Queue as a trigger to **DLQProcessorLambda** Lambda Function
+11. Add Dead Letter SQS Queue as a trigger to **DLQProcessorLambda** Lambda function
 	1. Batch size = 1
 
 ## Advantages

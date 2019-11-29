@@ -42,8 +42,8 @@ This utility requires the following AWS services
 |----------------------------------	|-------------------------	|
 | source_glue_catalog_id           	| Source AWS Account Id      |
 | ddb_name_gdc_replication_planner 	| Name of the DDB Table      |
-| database_prefix_list             	| e.g. raw_data_,processed_data_ The list of database prefixes to be replicated. |
-| separator                        	| e.g. ,                       	|
+| database_prefix_list             	| List of database prefixes separated by a token. **E.g. raw_data_,processed_data_**. To export all databases, do not add this variable. |
+| separator                        	| The separator used for database_prefix_list. **E.g. ,**. This can be skipped when database_prefix_list is not added.                       	|
 | region                           	| e.g. us-east-1               	|
 | sns_topic_arn_gdc_replication_planner |  Name of the SNS Topic   |
 
@@ -120,7 +120,12 @@ This utility requires the following AWS services
 	2. Queue Type = Standard
 	3. Default Visibility Timeout = 3 minutes 15 seconds. **Note:** It must be higher than execution timeout of **ExportLargeTable** Lambda Function
 
-5. Create Lambda Execution IAM Role and attach it to the Lambda functions deployed in Source Account
+5. Create Lambda Execution IAM Role and attach it to the Lambda functions deployed in Source Account. This role needs to have multiple permissions. Refer the following IAM policies to know about required permissions:
+	1. You can use AWS managed policy called **AWSLambdaExecute** (Policy ARN # arn:aws:iam::aws:policy/AWSLambdaExecute)
+	2. [sample_sqs_policy_source_and_target_accounts](./src/test/resources/sample_sqs_policy_source_and_target_accounts.json)
+	3. [sample_sns_policy_source_account](./src/test/resources/sample_sns_policy_source_account.json)s
+	4. [sample_glue_policy_source_account](./src/test/resources/sample_glue_policy_source_account.json)
+	5. [sample_ddb_policy_source_target_accounts](./src/test/resources/sample_ddb_policy_source_and_target_accounts.json)
 
 6. Deploy **GDCReplicationPlanner** Lambda Function
    	1. Function package = Use the Jar file generated. Refer section [Build Instructions](#Build-Instructions)
@@ -170,7 +175,11 @@ This utility requires the following AWS services
 	2. Queue Type = Standard
 	3. Default Visibility Timeout = 20 seconds
 
-4. Create Lambda Execution IAM Role and attach it to the Lambda functions deployed in Target Account.
+4. Create Lambda Execution IAM Role and attach it to the Lambda functions deployed in Target Account. This role needs to have multiple permissions. Refer the following IAM policies to know about required permissions:
+	1. You can use AWS managed policy called **AWSLambdaExecute** (Policy ARN # arn:aws:iam::aws:policy/AWSLambdaExecute)
+	2. [sample_sqs_policy_source_and_target_accounts](./src/test/resources/sample_sqs_policy_source_and_target_accounts.json)
+	3. [sample_glue_policy_target_account](./src/test/resources/sample_glue_policy_target_account.json)
+	4. [sample_ddb_policy_source_target_accounts](./src/test/resources/sample_ddb_policy_source_and_target_accounts.json)
 
 5. Deploy **ImportLambda** Lambda Function
 	1. Function package = Use the Jar file generated. Refer section [Build Instructions](#Build-Instructions)

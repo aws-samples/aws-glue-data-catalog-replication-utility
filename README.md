@@ -47,12 +47,10 @@ This utility requires the following AWS services
 	| table_status | audit data for tables exported | Partition key - table_id (String), Sort key - export_run_id (Number) | On-Demand |
 
 2. Create two SNS Topics
-	1. Topic 1: Name = ```ReplicationPlannerSNSTopic```
-	2. Topic 2: Name = ```SchemaDistributionSNSTopic```
+	1. Topic 1: E.g. Name = ```ReplicationPlannerSNSTopic```
+	2. Topic 2: E.g. Name = ```SchemaDistributionSNSTopic```
 
-3. Create an S3 Bucket. It is used to save partitions for large tables (partitions > 10)
-	1. Bucket name = ```gdc-replication-large-table-schema```
-	2. **Note:** This bucket must provide cross-account permissions to the IAM roles used by **ImportLargeTable** Lambda Function in Target Account. Refer the following AWS resources for more details
+3. Create an S3 Bucket. It is used to save partitions for large tables (partitions > 10). This bucket must provide cross-account permissions to the IAM roles used by **ImportLargeTable** Lambda Function in Target Account. Refer the following AWS resources for more details
 		1. https://aws.amazon.com/premiumsupport/knowledge-center/cross-account-access-s3/
 		2. https://docs.aws.amazon.com/AmazonS3/latest/dev/example-walkthroughs-managing-access-example2.html
 

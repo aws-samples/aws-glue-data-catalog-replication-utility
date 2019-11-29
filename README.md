@@ -190,6 +190,16 @@ This utility requires the following AWS services
 	4. Memory = 192 MB
 	5. Environment variable = as defined in section [AWS Lambda Environment Variables Summary](#AWS-Lambda-Environment-Variables-Summary)
 
+	| Variable Name                    	| Variable Value          	|
+	|----------------------------------	|-------------------------	|
+	| target_glue_catalog_id           	| Target AWS Account Id    	|
+	| ddb_name_db_import_status 	    | Name of the DDB Table for **db_status** of target account     |
+	| ddb_name_table_import_status      | Name of the DDB Table for **table_status** of target account  |
+	| skip_archive             	        | true 	                 |
+	| region             	            | e.g. us-east-1  	     |
+	| sqs_queue_url_large_tables   		| SQS Queue URL for **LargeTableSQSQueue**    | 
+	| dlq_url_sqs                       | SQS Queue URL for **DeadLetterQueue**  |
+
 6. Give **SchemaDistributionSNSTopic** permissions to invoke Lambda function
 	
 	```

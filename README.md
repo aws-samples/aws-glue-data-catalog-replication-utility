@@ -123,24 +123,27 @@ The following AWS services are required to deploy this replication utility.
 5. Create Lambda Execution IAM Role and attach it to the Lambda functions deployed in Source Account
 
 6. Deploy **GDCReplicationPlanner** Lambda Function
-   	1. Lambda Handler = ```com.amazonaws.gdcreplication.lambda.GDCReplicationPlanner```
-   	2. Lambda Execution Timeout = 3 minutes
-	3. Memory = 128 MB
-	4. Environment variable = as defined in section [AWS Lambda Environment Variables Summary](#AWS-Lambda-Environment-Variables-Summary)
+   	1. Function package = Use the Jar file generated. Refer section [Build Instructions](##Build-Instructions)
+   	2. Lambda Handler = ```com.amazonaws.gdcreplication.lambda.GDCReplicationPlanner```
+   	3. Lambda Execution Timeout = 3 minutes
+	4. Memory = 128 MB
+	5. Environment variable = as defined in section [AWS Lambda Environment Variables Summary](#AWS-Lambda-Environment-Variables-Summary)
 
 7. Deploy **ExportDatabaseWithTables** Lambda Function
-   	1. Lambda Handler = ```com.amazonaws.gdcreplication.lambda.ExportDatabaseWithTables```
-   	2. Lambda Execution Timeout = 3 minutes
-	3. Memory = 192 MB
-	4. Environment variable = as defined in section [AWS Lambda Environment Variables Summary](#AWS-Lambda-Environment-Variables-Summary)
+   	1. Function package = Use the Jar file generated. Refer section [Build Instructions](##Build-Instructions)
+   	2. Lambda Handler = ```com.amazonaws.gdcreplication.lambda.ExportDatabaseWithTables```
+   	3. Lambda Execution Timeout = 3 minutes
+	4. Memory = 192 MB
+	5. Environment variable = as defined in section [AWS Lambda Environment Variables Summary](#AWS-Lambda-Environment-Variables-Summary)
 
 8. Add **ReplicationPlannerSNSTopic** as a trigger to **ExportDatabaseWithTables** Lambda Function.
 
 8. Deploy **ExportLargeTable** Lambda Function
-	1. Lambda Handler = ```com.amazonaws.gdcreplication.lambda.ExportLargeTable```
-	2. Lambda Execution Timeout = 3 minutes
-	3. Memory = 256 MB
-	4. Environment variable = as defined in section [AWS Lambda Environment Variables Summary](#AWS-Lambda-Environment-Variables-Summary)
+	1. Function package = Use the Jar file generated. Refer section [Build Instructions](##Build-Instructions)
+	2. Lambda Handler = ```com.amazonaws.gdcreplication.lambda.ExportLargeTable```
+	3. Lambda Execution Timeout = 3 minutes
+	4. Memory = 256 MB
+	5. Environment variable = as defined in section [AWS Lambda Environment Variables Summary](#AWS-Lambda-Environment-Variables-Summary)
 
 9. Add **LargeTableSQSQueue** as a trigger to **ExportLargeTable** Lambda Function
 	1. Batch size = 1
@@ -174,10 +177,11 @@ once in a day you can use.
 6. Create Lambda Execution IAM Role and attach it to the Lambda functions deployed in Target Account.
 
 1. Deploy **ImportLambda** Lambda Function
-	1. Lambda Handler = ```com.amazonaws.gdcreplication.lambda.ImportDatabaseOrTable```
-	2. Lambda Execution Timeout = 3 minutes
-	3. Memory = 192 MB
-	4. Environment variable = as defined in section [AWS Lambda Environment Variables Summary](#AWS-Lambda-Environment-Variables-Summary)
+	1. Function package = Use the Jar file generated. Refer section [Build Instructions](##Build-Instructions)
+	2. Lambda Handler = ```com.amazonaws.gdcreplication.lambda.ImportDatabaseOrTable```
+	3. Lambda Execution Timeout = 3 minutes
+	4. Memory = 192 MB
+	5. Environment variable = as defined in section [AWS Lambda Environment Variables Summary](#AWS-Lambda-Environment-Variables-Summary)
 
 2. Give **SchemaDistributionSNSTopic** permissions to invoke Lambda function
 	
@@ -199,19 +203,21 @@ once in a day you can use.
 	 - https://docs.aws.amazon.com/lambda/latest/dg/with-sns-example.html#with-sns-create-x-account-permissions
 
 9. Deploy **ImportLargeTable** Lambda Function
-	1. Lambda Handler =  ```com.amazonaws.gdcreplication.lambda.ImportLargeTable```
-	2. Lambda Execution Timeout = 3 minutes
-	3. Memory = 256 MB
-	4. Environment variable = as defined in section [AWS Lambda Environment Variables Summary](#AWS-Lambda-Environment-Variables-Summary)
+	1. Function package = Use the Jar file generated. Refer section [Build Instructions](##Build-Instructions)
+	2. Lambda Handler =  ```com.amazonaws.gdcreplication.lambda.ImportLargeTable```
+	3. Lambda Execution Timeout = 3 minutes
+	4. Memory = 256 MB
+	5. Environment variable = as defined in section [AWS Lambda Environment Variables Summary](#AWS-Lambda-Environment-Variables-Summary)
 
 10. Add **LargeTableSQSQueue** as a trigger to **ImportLargeTable** Lambda Function
 	1. Batch size = 1
 
 11. Deploy **DLQImportDatabaseOrTable** Lambda Function
-	1. Lambda Handler = ```com.amazonaws.gdcreplication.lambda.DLQImportDatabaseOrTable``` 
-	2. Lambda Execution Timeout = 3 minutes
-	3. Memory = 192 MB
-	4. Environment variable = as defined in section [AWS Lambda Environment Variables Summary](#AWS-Lambda-Environment-Variables-Summary)
+	1. Function package = Use the Jar file generated. Refer section [Build Instructions](##Build-Instructions)
+	2. Lambda Handler = ```com.amazonaws.gdcreplication.lambda.DLQImportDatabaseOrTable``` 
+	3. Lambda Execution Timeout = 3 minutes
+	4. Memory = 192 MB
+	5. Environment variable = as defined in section [AWS Lambda Environment Variables Summary](#AWS-Lambda-Environment-Variables-Summary)
 
 12. Add Dead Letter SQS Queue as a trigger to **DLQImportDatabaseOrTable** Lambda Function
 	1. Batch size = 1
@@ -243,7 +249,7 @@ Running this solution as a scheduled job means a couple of things 1) replicate n
 As far as database and tables are concerned, the action taken by Import Lambdas depend on the state of Glue Data Catalog in target account. 
 Those actions are summarized in the following table. 
 
-|Input Message Type	| State in Target Glue Data Catalog | Action Taken in Target Account |
+|Input Message Type	| State in Target Glue Data Catalog | Action Taken in Target Glue Data Catalog |
 |-------------------|-----------------------------------|------------  |
 |Database	| Database exist already					| Skip the message |
 |Database	| Database does not exist 					| Create Database  |

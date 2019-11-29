@@ -123,9 +123,9 @@ This utility requires the following AWS services
 5. Create Lambda Execution IAM Role and attach it to the Lambda functions deployed in Source Account. This role needs to have multiple permissions. Refer the following IAM policies to know about required permissions:
 	1. You can use AWS managed policy called **AWSLambdaExecute** (Policy ARN # arn:aws:iam::aws:policy/AWSLambdaExecute)
 	2. [sample_sqs_policy_source_and_target_accounts](./src/test/resources/sample_sqs_policy_source_and_target_accounts.json)
-	3. [sample_sns_policy_source_account](./src/test/resources/sample_sns_policy_source_account.json)s
+	3. [sample_sns_policy_source_account](./src/test/resources/sample_sns_policy_source_account.json)
 	4. [sample_glue_policy_source_account](./src/test/resources/sample_glue_policy_source_account.json)
-	5. [sample_ddb_policy_source_target_accounts](./src/test/resources/sample_ddb_policy_source_and_target_accounts.json)
+	5. [sample_ddb_policy_source_and_target_accounts](./src/test/resources/sample_ddb_policy_source_and_target_accounts.json)
 
 6. Deploy **GDCReplicationPlanner** Lambda Function
    	1. Function package = Use the Jar file generated. Refer section [Build Instructions](#Build-Instructions)
@@ -179,7 +179,7 @@ This utility requires the following AWS services
 	1. You can use AWS managed policy called **AWSLambdaExecute** (Policy ARN # arn:aws:iam::aws:policy/AWSLambdaExecute)
 	2. [sample_sqs_policy_source_and_target_accounts](./src/test/resources/sample_sqs_policy_source_and_target_accounts.json)
 	3. [sample_glue_policy_target_account](./src/test/resources/sample_glue_policy_target_account.json)
-	4. [sample_ddb_policy_source_target_accounts](./src/test/resources/sample_ddb_policy_source_and_target_accounts.json)
+	4. [sample_ddb_policy_source_and_target_accounts](./src/test/resources/sample_ddb_policy_source_and_target_accounts.json)
 
 5. Deploy **ImportLambda** Lambda Function
 	1. Function package = Use the Jar file generated. Refer section [Build Instructions](#Build-Instructions)

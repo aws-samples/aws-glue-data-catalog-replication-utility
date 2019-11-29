@@ -36,76 +36,15 @@ This utility requires the following AWS services
 | [ImportLargeTableLambda](./src/main/java/com/amazonaws/gdcreplication/lambda/ImportLargeTable.java) | Lambda Function to import a large table to Glue Data Catalog in Target Account.|
 | [DLQProcessorLambda](./src/main/java/com/amazonaws/gdcreplication/lambda/DLQImportDatabaseOrTable.java) | Dead Letter Queue Processing - Lambda Function to import a database or a table to Glue Data Catalog in Target Account.| 
 
-## AWS Lambda Environment Variables Summary
-### GDCReplicationPlannerLambda
-| Variable Name                    	| Variable Value          	|
-|----------------------------------	|-------------------------	|
-| source_glue_catalog_id           	| Source AWS Account Id      |
-| ddb_name_gdc_replication_planner 	| Name of the DDB Table for **glue_database_export_task** of source account    |
-| database_prefix_list             	| List of database prefixes separated by a token. **E.g. raw_data_,processed_data_**. To export all databases, do not add this variable. |
-| separator                        	| The separator used for database_prefix_list. **E.g. ,**. This can be skipped when database_prefix_list is not added.                       	|
-| region                           	| e.g. us-east-1               	|
-| sns_topic_arn_gdc_replication_planner |  SNS Topic ARN for **ReplicationPlannerSNSTopic**    |
-
-### ExportLambda
-| Variable Name                    	| Variable Value          	|
-|----------------------------------	|-------------------------	|
-| source_glue_catalog_id           	| Source AWS Account Id     |
-| ddb_name_db_export_status 	    | Name of the DDB Table for **db_status** of source account     |
-| ddb_name_table_export_status      | Name of the DDB Table for **table_status** of source account     |
-| region             	            | e.g. us-east-1  	       |
-| sns_topic_arn_export_dbs_tables   | SNS Topic ARN for **SchemaDistributionSNSTopic**    |
-| sqs_queue_url_large_tables   		| SQS Queue URL for **LargeTableSQSQueue**    |
-
-### ExportLargeTableLambda
-| Variable Name                    	| Variable Value          	|
-|----------------------------------	|-------------------------	|
-| s3_bucket_name 	                | Name of the S3 Bucket used to save partitions for large Tables |
-| ddb_name_table_export_status      | Name of the DDB Table for **table_status** of source account     |
-| region             	            | e.g. us-east-1  	       |
-| sns_topic_arn_export_dbs_tables   | SNS Topic ARN for **SchemaDistributionSNSTopic**   |
-
-### ImportLambda
-| Variable Name                    	| Variable Value          	|
-|----------------------------------	|-------------------------	|
-| target_glue_catalog_id           	| Target AWS Account Id    	|
-| ddb_name_db_import_status 	    | Name of the DDB Table for **db_status** of target account     |
-| ddb_name_table_import_status      | Name of the DDB Table for **table_status** of target account  |
-| skip_archive             	        | true 	                 |
-| region             	            | e.g. us-east-1  	     |
-| sqs_queue_url_large_tables   		| SQS Queue URL for **LargeTableSQSQueue**    | 
-| dlq_url_sqs                       | SQS Queue URL for **DeadLetterQueue**  |
-
-### ImportLargeTableLambda
-| Variable Name                    	| Variable Value         |
-|----------------------------------	|----------------------	 |
-| target_glue_catalog_id           	| Target AWS Account Id  |
-| ddb_name_table_import_status      | Name of the DDB Table for **table_status** of target account |
-| skip_archive             	        | true 	                 |
-| region             	            | e.g. us-east-1  	     |
-
-### DLQProcessorLambda
-| Variable Name                    	| Variable Value          |
-|----------------------------------	|-------------------------	|
-| target_glue_catalog_id            | Target AWS Account Id     |
-| ddb_name_db_import_status 	    | Name of the DDB Table for **db_status** of target account     |
-| ddb_name_table_import_status      | Name of the DDB Table for **table_status** of target account  |
-| skip_archive             	        | true 	                    |
-| dlq_url_sqs                       | SQS Queue URL for **DeadLetterQueue**   |
-| region             	            | e.g. us-east-1  	      |
-
-## DynamoDB Tables
-| Table             | Description 	 |  Account   | Schema 	    |  Capacity      | 
-|-------------------|----------------|------------|------------ | -------------- |
-| glue_database_export_task | audit data for replication planner | source account | Partition key - db_id (String), Sort key - export_run_id (Number) | On-Demand |
-| db_status | audit data for databases exported | source account | Partition key - db_id (String), Sort key - export_run_id (Number) | On-Demand |
-| table_status | audit data for tables exported | source account | Partition key - table_id (String), Sort key - export_run_id (Number) | On-Demand |
-| db_status | audit data for databases imported | target account | Partition key - db_id (String), Sort key - import_run_id (Number) | On-Demand |
-| table_status | audit data for tables imported | target account | Partition key - table_id (String), Sort key - import_run_id (Number) | On-Demand |
-
 ## Deployment Instructions - Source Account
 
-1. Create DynamoDB tables as defined in section [DynamoDB Tables](#DynamoDB-Tables)
+1. Create DynamoDB tables as defined in the following table
+
+	| Table             | Description 	 |  Account   | Schema 	    |  Capacity      | 
+	|-------------------|----------------|------------|------------ | -------------- |
+	| glue_database_export_task | audit data for replication planner | source account | Partition key - db_id (String), Sort key - export_run_id (Number) | On-Demand |
+	| db_status | audit data for databases exported | source account | Partition key - db_id (String), Sort key - export_run_id (Number) | On-Demand |
+	| table_status | audit data for tables exported | source account | Partition key - table_id (String), Sort key - export_run_id (Number) | On-Demand |
 
 2. Create two SNS Topics
 	1. Topic 1: Name = ```ReplicationPlannerSNSTopic```
@@ -129,30 +68,55 @@ This utility requires the following AWS services
 	4. [sample_glue_policy_source_account](./src/test/resources/sample_glue_policy_source_account.json)
 	5. [sample_ddb_policy_source_and_target_accounts](./src/test/resources/sample_ddb_policy_source_and_target_accounts.json)
 
-6. Deploy **GDCReplicationPlanner** Lambda Function
+6. Deploy **GDCReplicationPlannerLambda** Function
    	1. Function package = Use the Jar file generated. Refer section [Build Instructions](#Build-Instructions)
    	2. Lambda Handler = ```com.amazonaws.gdcreplication.lambda.GDCReplicationPlanner```
    	3. Lambda Execution Timeout = 3 minutes
 	4. Memory = 128 MB
-	5. Environment variable = as defined in section [AWS Lambda Environment Variables Summary](#AWS-Lambda-Environment-Variables-Summary)
+	5. Environment variable = as defined in the following table
 
-7. Deploy **ExportDatabaseWithTables** Lambda Function
+	| Variable Name                    	| Variable Value          	|
+	|----------------------------------	|-------------------------	|
+	| source_glue_catalog_id           	| Source AWS Account Id      |
+	| ddb_name_gdc_replication_planner 	| Name of the DDB Table for **glue_database_export_task** of source account    |
+	| database_prefix_list             	| List of database prefixes separated by a token. **E.g. raw_data_,processed_data_**. To export all databases, do not add this variable. |
+	| separator                        	| The separator used for database_prefix_list. **E.g. ,**. This can be skipped when database_prefix_list is not added.                       	|
+	| region                           	| e.g. us-east-1               	|
+	| sns_topic_arn_gdc_replication_planner |  SNS Topic ARN for **ReplicationPlannerSNSTopic**    |
+
+7. Deploy **ExportLambda** Function
    	1. Function package = Use the Jar file generated. Refer section [Build Instructions](#Build-Instructions)
    	2. Lambda Handler = ```com.amazonaws.gdcreplication.lambda.ExportDatabaseWithTables```
    	3. Lambda Execution Timeout = 3 minutes
 	4. Memory = 192 MB
-	5. Environment variable = as defined in section [AWS Lambda Environment Variables Summary](#AWS-Lambda-Environment-Variables-Summary)
+	5. Environment variable = as defined in the following table
 
-8. Add **ReplicationPlannerSNSTopic** as a trigger to **ExportDatabaseWithTables** Lambda Function.
+	| Variable Name                    	| Variable Value          	|
+	|----------------------------------	|-------------------------	|
+	| source_glue_catalog_id           	| Source AWS Account Id     |
+	| ddb_name_db_export_status 	    | Name of the DDB Table for **db_status** of source account     |
+	| ddb_name_table_export_status      | Name of the DDB Table for **table_status** of source account     |
+	| region             	            | e.g. us-east-1  	       |
+	| sns_topic_arn_export_dbs_tables   | SNS Topic ARN for **SchemaDistributionSNSTopic**    |
+	| sqs_queue_url_large_tables   		| SQS Queue URL for **LargeTableSQSQueue**    |
 
-9. Deploy **ExportLargeTable** Lambda Function
+8. Add **ReplicationPlannerSNSTopic** as a trigger to **ExportLambda** Function.
+
+9. Deploy **ExportLargeTableLambda** Function
 	1. Function package = Use the Jar file generated. Refer section [Build Instructions](#Build-Instructions)
 	2. Lambda Handler = ```com.amazonaws.gdcreplication.lambda.ExportLargeTable```
 	3. Lambda Execution Timeout = 3 minutes
 	4. Memory = 256 MB
-	5. Environment variable = as defined in section [AWS Lambda Environment Variables Summary](#AWS-Lambda-Environment-Variables-Summary)
+	5. Environment variable = as defined in the following table
 
-10. Add **LargeTableSQSQueue** as a trigger to **ExportLargeTable** Lambda Function
+	| Variable Name                    	| Variable Value          	|
+	|----------------------------------	|-------------------------	|
+	| s3_bucket_name 	                | Name of the S3 Bucket used to save partitions for large Tables |
+	| ddb_name_table_export_status      | Name of the DDB Table for **table_status** of source account     |
+	| region             	            | e.g. us-east-1  	       |
+	| sns_topic_arn_export_dbs_tables   | SNS Topic ARN for **SchemaDistributionSNSTopic**   |
+
+10. Add **LargeTableSQSQueue** as a trigger to **ExportLargeTableLambda** Function
 	1. Batch size = 1
 
 11. Cross-Account permissions in Source Account. Grant permissions to Target Account to subscribe to the second SNS Topic:
@@ -165,7 +129,12 @@ This utility requires the following AWS services
 
 ## Deployment Instructions - Target Account
 	
-1. Create DynamoDB tables as defined in section [DynamoDB Tables](#DynamoDB-Tables)
+1. Create DynamoDB tables as defined in the following table
+
+	| Table             | Description 	 |  Account   | Schema 	    |  Capacity      | 
+	|-------------------|----------------|------------|------------ | -------------- |
+	| db_status | audit data for databases imported | target account | Partition key - db_id (String), Sort key - import_run_id (Number) | On-Demand |
+	| table_status | audit data for tables imported | target account | Partition key - table_id (String), Sort key - import_run_id (Number) | On-Demand |
 
 2. Create SQS Queue
 	1. Queue Name = ```LargeTableSQSQueue```
@@ -183,12 +152,12 @@ This utility requires the following AWS services
 	3. [sample_glue_policy_target_account](./src/test/resources/sample_glue_policy_target_account.json)
 	4. [sample_ddb_policy_source_and_target_accounts](./src/test/resources/sample_ddb_policy_source_and_target_accounts.json)
 
-5. Deploy **ImportLambda** Lambda Function
+5. Deploy **ImportLambda** Function
 	1. Function package = Use the Jar file generated. Refer section [Build Instructions](#Build-Instructions)
 	2. Lambda Handler = ```com.amazonaws.gdcreplication.lambda.ImportDatabaseOrTable```
 	3. Lambda Execution Timeout = 3 minutes
 	4. Memory = 192 MB
-	5. Environment variable = as defined in section [AWS Lambda Environment Variables Summary](#AWS-Lambda-Environment-Variables-Summary)
+	5. Environment variable = as defined in the following table
 
 	| Variable Name                    	| Variable Value          	|
 	|----------------------------------	|-------------------------	|
@@ -209,7 +178,7 @@ This utility requires the following AWS services
 	--principal sns.amazonaws.com
 	```
 
-7. Subscribe **ImportLambda** Lambda function to **SchemaDistributionSNSTopic**
+7. Subscribe **ImportLambda** function to **SchemaDistributionSNSTopic**
 	
 	```
 	aws sns subscribe --protocol lambda \
@@ -219,24 +188,40 @@ This utility requires the following AWS services
 	Additional References:
 	 - https://docs.aws.amazon.com/lambda/latest/dg/with-sns-example.html#with-sns-create-x-account-permissions
 
-8. Deploy **ImportLargeTable** Lambda Function
+8. Deploy **ImportLargeTableLambda** Function
 	1. Function package = Use the Jar file generated. Refer section [Build Instructions](#Build-Instructions)
 	2. Lambda Handler =  ```com.amazonaws.gdcreplication.lambda.ImportLargeTable```
 	3. Lambda Execution Timeout = 3 minutes
 	4. Memory = 256 MB
-	5. Environment variable = as defined in section [AWS Lambda Environment Variables Summary](#AWS-Lambda-Environment-Variables-Summary)
+	5. Environment variable = as defined in the following table
 
-9. Add **LargeTableSQSQueue** as a trigger to **ImportLargeTable** Lambda Function
+	| Variable Name                    	| Variable Value         |
+	|----------------------------------	|----------------------	 |
+	| target_glue_catalog_id           	| Target AWS Account Id  |
+	| ddb_name_table_import_status      | Name of the DDB Table for **table_status** of target account |
+	| skip_archive             	        | true 	                 |
+	| region             	            | e.g. us-east-1  	     |
+
+9. Add **LargeTableSQSQueue** as a trigger to **ImportLargeTableLambda** Lambda Function
 	1. Batch size = 1
 
-10. Deploy **DLQImportDatabaseOrTable** Lambda Function
+10. Deploy **DLQProcessorLambda** Function
 	1. Function package = Use the Jar file generated. Refer section [Build Instructions](#Build-Instructions)
 	2. Lambda Handler = ```com.amazonaws.gdcreplication.lambda.DLQImportDatabaseOrTable``` 
 	3. Lambda Execution Timeout = 3 minutes
 	4. Memory = 192 MB
-	5. Environment variable = as defined in section [AWS Lambda Environment Variables Summary](#AWS-Lambda-Environment-Variables-Summary)
+	5. Environment variable = as defined in the following table
 
-11. Add Dead Letter SQS Queue as a trigger to **DLQImportDatabaseOrTable** Lambda Function
+	| Variable Name                    	| Variable Value          |
+	|----------------------------------	|-------------------------	|
+	| target_glue_catalog_id            | Target AWS Account Id     |
+	| ddb_name_db_import_status 	    | Name of the DDB Table for **db_status** of target account     |
+	| ddb_name_table_import_status      | Name of the DDB Table for **table_status** of target account  |
+	| skip_archive             	        | true 	                    |
+	| dlq_url_sqs                       | SQS Queue URL for **DeadLetterQueue**   |
+	| region             	            | e.g. us-east-1  	      |
+
+11. Add Dead Letter SQS Queue as a trigger to **DLQProcessorLambda** Lambda Function
 	1. Batch size = 1
 
 ## Advantages

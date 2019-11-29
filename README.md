@@ -40,11 +40,11 @@ This utility requires the following AWS services
 
 1. Create DynamoDB tables as defined in the following table
 
-	| Table             | Description 	 |  Account   | Schema 	    |  Capacity      | 
-	|-------------------|----------------|------------|------------ | -------------- |
-	| glue_database_export_task | audit data for replication planner | source account | Partition key - db_id (String), Sort key - export_run_id (Number) | On-Demand |
-	| db_status | audit data for databases exported | source account | Partition key - db_id (String), Sort key - export_run_id (Number) | On-Demand |
-	| table_status | audit data for tables exported | source account | Partition key - table_id (String), Sort key - export_run_id (Number) | On-Demand |
+	| Table             | Description 	 |  Schema 	    |  Capacity      | 
+	|-------------------|----------------| ------------ | -------------- |
+	| glue_database_export_task | audit data for replication planner | Partition key - db_id (String), Sort key - export_run_id (Number) | On-Demand |
+	| db_status | audit data for databases exported | Partition key - db_id (String), Sort key - export_run_id (Number) | On-Demand |
+	| table_status | audit data for tables exported | Partition key - table_id (String), Sort key - export_run_id (Number) | On-Demand |
 
 2. Create two SNS Topics
 	1. Topic 1: Name = ```ReplicationPlannerSNSTopic```
@@ -131,10 +131,10 @@ This utility requires the following AWS services
 	
 1. Create DynamoDB tables as defined in the following table
 
-	| Table             | Description 	 |  Account   | Schema 	    |  Capacity      | 
-	|-------------------|----------------|------------|------------ | -------------- |
-	| db_status | audit data for databases imported | target account | Partition key - db_id (String), Sort key - import_run_id (Number) | On-Demand |
-	| table_status | audit data for tables imported | target account | Partition key - table_id (String), Sort key - import_run_id (Number) | On-Demand |
+	| Table             | Description 	 |  Schema 	    |  Capacity      | 
+	|-------------------|----------------| ------------ | -------------- |
+	| db_status    | audit data for databases imported | Partition key - db_id (String), Sort key - import_run_id (Number)    | On-Demand |
+	| table_status | audit data for tables imported    | Partition key - table_id (String), Sort key - import_run_id (Number) | On-Demand |
 
 2. Create SQS Queue
 	1. Queue Name = ```LargeTableSQSQueue```

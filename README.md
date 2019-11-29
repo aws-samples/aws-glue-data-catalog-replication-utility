@@ -235,7 +235,7 @@ Following are the primary limitations:
 
 ## Applicable Use Cases
 ### Use Case 1 - One-time Glue Data Catalog Replication from one AWS Account to one or more AWS Accounts 
-To do this, you can run **GDCReplicationPlannerLambda** function.
+To do this, you can run **GDCReplicationPlannerLambda** function using a Test event in AWS Lambda console.
 
 ### Use Case 2 - Ongoing replication of Glue Data Catalog from one AWS Account to one or more AWS Accounts 
 To do this, you can create a CloudWatch Event Rule in Source Account and add **GDCReplicationPlannerLambda** as its target. 

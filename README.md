@@ -17,14 +17,14 @@ This utility requires the following AWS services
  - 2 SNS Topics
  - 1 SQS Queue
  - 1 S3 Bucket
- - Cross-account permissions on S3 Bucket
+ - Cross-account permissions defined on S3 Bucket to import Lambda Function(s) of Target Account(s)
 
 ### Each Target Account
  - 3 import Lambda Functions 
  - 1 Lambda Execution IAM Role
  - 2 DynamoDB tables
  - 2 SQS Queues
- -  Cross-account permissions for import Lambda Function to receive messages from SNS Topic
+ - Cross-account permissions for import Lambda Function(s) to receive messages from SNS Topic  of Source Account
 
 ## Lambda Functions Overview
 | Class                                                         | Overview 	   |
@@ -41,55 +41,57 @@ This utility requires the following AWS services
 | Variable Name                    	| Variable Value          	|
 |----------------------------------	|-------------------------	|
 | source_glue_catalog_id           	| Source AWS Account Id      |
-| ddb_name_gdc_replication_planner 	| Name of the DDB Table      |
+| ddb_name_gdc_replication_planner 	| Name of the DDB Table for **glue_database_export_task** of source account    |
 | database_prefix_list             	| List of database prefixes separated by a token. **E.g. raw_data_,processed_data_**. To export all databases, do not add this variable. |
 | separator                        	| The separator used for database_prefix_list. **E.g. ,**. This can be skipped when database_prefix_list is not added.                       	|
 | region                           	| e.g. us-east-1               	|
-| sns_topic_arn_gdc_replication_planner |  Name of the SNS Topic   |
+| sns_topic_arn_gdc_replication_planner |  SNS Topic ARN for **ReplicationPlannerSNSTopic**    |
 
 ### ExportLambda
 | Variable Name                    	| Variable Value          	|
 |----------------------------------	|-------------------------	|
-| source_glue_catalog_id           	| Source AWS Account Id     	|
-| ddb_name_db_export_status 	        | Name of the DDB Table     |
-| ddb_name_table_export_status       | Name of the DDB Table     |
+| source_glue_catalog_id           	| Source AWS Account Id     |
+| ddb_name_db_export_status 	    | Name of the DDB Table for **db_status** of source account     |
+| ddb_name_table_export_status      | Name of the DDB Table for **table_status** of source account     |
 | region             	            | e.g. us-east-1  	       |
-| sns_topic_arn_export_dbs_tables    | Name of the SNS Topic    |
+| sns_topic_arn_export_dbs_tables   | SNS Topic ARN for **SchemaDistributionSNSTopic**    |
+| sqs_queue_url_large_tables   		| SQS Queue URL for **LargeTableSQSQueue**    |
 
 ### ExportLargeTableLambda
 | Variable Name                    	| Variable Value          	|
 |----------------------------------	|-------------------------	|
 | s3_bucket_name 	                | Name of the S3 Bucket used to save partitions for large Tables |
-| ddb_name_table_export_status       | Name of the DDB Table     |
+| ddb_name_table_export_status      | Name of the DDB Table for **table_status** of source account     |
 | region             	            | e.g. us-east-1  	       |
-| sns_topic_arn_export_dbs_tables    | Name of the SNS Topic    |
+| sns_topic_arn_export_dbs_tables   | SNS Topic ARN for **SchemaDistributionSNSTopic**   |
 
 ### ImportLambda
 | Variable Name                    	| Variable Value          	|
 |----------------------------------	|-------------------------	|
 | target_glue_catalog_id           	| Target AWS Account Id    	|
-| ddb_name_db_import_status 	        | Name of the DDB Table      |
-| ddb_name_table_import_status       | Name of the DDB Table  |
+| ddb_name_db_import_status 	    | Name of the DDB Table for **db_status** of target account     |
+| ddb_name_table_import_status      | Name of the DDB Table for **table_status** of target account  |
 | skip_archive             	        | true 	                 |
-| dlq_url_sqs                        | Name of the SQS Queue  |
 | region             	            | e.g. us-east-1  	     |
+| sqs_queue_url_large_tables   		| SQS Queue URL for **LargeTableSQSQueue**    | 
+| dlq_url_sqs                       | SQS Queue URL for **DeadLetterQueue**  |
 
 ### ImportLargeTableLambda
 | Variable Name                    	| Variable Value         |
 |----------------------------------	|----------------------	 |
 | target_glue_catalog_id           	| Target AWS Account Id  |
-| ddb_name_table_import_status      | Name of the DDB Table  |
+| ddb_name_table_import_status      | Name of the DDB Table for **table_status** of target account |
 | skip_archive             	        | true 	                 |
 | region             	            | e.g. us-east-1  	     |
 
 ### DLQProcessorLambda
 | Variable Name                    	| Variable Value          |
 |----------------------------------	|-------------------------	|
-| target_glue_catalog_id             | Target AWS Account Id     |
-| ddb_name_db_import_status 	        | Name of the DDB Table     |
-| ddb_name_table_import_status       | Name of the DDB Table    |
+| target_glue_catalog_id            | Target AWS Account Id     |
+| ddb_name_db_import_status 	    | Name of the DDB Table for **db_status** of target account     |
+| ddb_name_table_import_status      | Name of the DDB Table for **table_status** of target account  |
 | skip_archive             	        | true 	                    |
-| dlq_url_sqs                        | Name of the SQS Queue   |
+| dlq_url_sqs                       | SQS Queue URL for **DeadLetterQueue**   |
 | region             	            | e.g. us-east-1  	      |
 
 ## DynamoDB Tables
@@ -165,15 +167,15 @@ This utility requires the following AWS services
 	
 1. Create DynamoDB tables as defined in section [DynamoDB Tables](#DynamoDB-Tables)
 
-2. Create SQS Queue in Source Account
+2. Create SQS Queue
 	1. Queue Name = ```LargeTableSQSQueue```
 	2. Queue Type = Standard
 	3. Default Visibility Timeout = 3 minutes 15 seconds. **Note:** It must be higher than execution timeout of **ImportLargeTable** Lambda Function
 
-3. Create SQS Queue (Dead Letter Queue) - this is for dead letter queue processing 
-	1. Queue Name = ```LargeTableSQSQueue```
+3. Create SQS Queue - dead letter queue processing 
+	1. Queue Name = ```DeadLetterQueue```
 	2. Queue Type = Standard
-	3. Default Visibility Timeout = 20 seconds
+	3. Default Visibility Timeout = 3 minutes 15 seconds
 
 4. Create Lambda Execution IAM Role and attach it to the Lambda functions deployed in Target Account. This role needs to have multiple permissions. Refer the following IAM policies to know about required permissions:
 	1. You can use AWS managed policy called **AWSLambdaExecute** (Policy ARN # arn:aws:iam::aws:policy/AWSLambdaExecute)

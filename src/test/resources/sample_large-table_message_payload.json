@@ -2,7 +2,7 @@
 	"largeTable": true,
 	"numberOfPartitions": 31,
 	"s3ObjectKey": "2019-10-18_1571431520830_01234567890_database_in_account_a_data",
-	"s3BucketName": "blog-batch-workloads",
+	"s3BucketName": "bucket_name",
 	"table": {
 		"name": "data",
 		"databaseName": "database_in_account_a",

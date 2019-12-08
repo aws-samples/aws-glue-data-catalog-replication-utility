@@ -1,6 +1,6 @@
 # AWS Glue Data Catalog Replication Utility
 
-This Utility is used to replicate Glue Data Catalog from one AWS account to another AWS account. Using this tool, you can replicate Databases, Tables, and Partitions from one source AWS account to one or more target AWS accounts. It uses AWS Glue APIs / AWS SDK for Java and serverless technologies such as AWS Lambda, Amazon SQS, and Amazon SNS. The architecture of this solution is shown in the following diagram.
+This Utility is used to replicate Glue Data Catalog from one AWS account to another AWS account. Using this, you can replicate Databases, Tables, and Partitions from one source AWS account to one or more target AWS accounts. It uses AWS Glue APIs / AWS SDK for Java and serverless technologies such as AWS Lambda, Amazon SQS, and Amazon SNS. The architecture of this utility is shown in the following diagram.
 ![Alt](./src/test/resources/Glue_Replication.png)
 
 ## Build Instructions

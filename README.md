@@ -15,7 +15,7 @@ This utility requires the following AWS services
  - 3 Amazon DynamoDB tables
  - 2 Amazon SNS Topics
  - 1 Amazon SQS Queue
- - 1 Amazon S3 Buckets
+ - 1 Amazon S3 Bucket
 
 ### Each Target Account
  - 3 AWS Lambda functions 

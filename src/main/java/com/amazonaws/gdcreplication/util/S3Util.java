@@ -31,12 +31,15 @@ public class S3Util {
 
 	
 	/**
+	 *
 	 * Create an object in S3 with list of partitions.
 	 * @param region
 	 * @param bucket
 	 * @param objectKey
 	 * @param content
 	 * @return
+	 *
+	 * Wrote this method based  on the ideas from Zoran Ivanovic of AWS
 	 */
 	public boolean createS3Object(String region, String bucket, String objectKey, String content) {
 		boolean objectCreated = false;

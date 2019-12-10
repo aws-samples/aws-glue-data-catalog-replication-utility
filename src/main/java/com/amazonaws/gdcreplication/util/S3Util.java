@@ -39,7 +39,7 @@ public class S3Util {
 	 * @param content
 	 * @return
 	 *
-	 * Wrote this method based  on the ideas from Zoran Ivanovic of AWS
+	 * Wrote this method based  on inputs from Zoran Ivanovic of AWS
 	 */
 	public boolean createS3Object(String region, String bucket, String objectKey, String content) {
 		boolean objectCreated = false;

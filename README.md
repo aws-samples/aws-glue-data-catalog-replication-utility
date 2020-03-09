@@ -3,6 +3,9 @@
 This Utility is used to replicate Glue Data Catalog from one AWS account to another AWS account. Using this, you can replicate Databases, Tables, and Partitions from one source AWS account to one or more target AWS accounts. It uses AWS Glue APIs / AWS SDK for Java and serverless technologies such as AWS Lambda, Amazon SQS, and Amazon SNS. The architecture of this utility is shown in the following diagram.
 ![Alt](./src/test/resources/Glue_Replication.png)
 
+## Automated Deployment
+Follow the instructions in this [README.md](automated-deployment/README.md) to deploy this utility through CloudFormation in your AWS accounts. Otherwise follow the guide below for a manual deployment.
+
 ## Build Instructions
 
 1. The source code has Maven nature, you can build it using standard Maven commands e.g. ```mvn -X clean install```. or use the options available in your IDE

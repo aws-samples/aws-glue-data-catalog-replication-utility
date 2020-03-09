@@ -1,0 +1,286 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: "AWS::Serverless-2016-10-31"
+Description: "AWS Glue Data Catalog Replication Utility - Source Account"
+
+Parameters:
+  pTargetAccountId:
+    Description: "AWS Target Account ID"
+    Type: String
+  pDatabasePrefixList:
+    Description: "List of database prefixes separated by a token. E.g. raw_data_,processed_data_. To export all databases, do not add this variable"
+    Type: String
+    Default: ""
+  pDatabasePrefixSeparator:
+    Description: "The separator used in the database_prefix_list. E.g. ,. This can be skipped when database_prefix_list is not added"
+    Type: String
+    Default: "|"
+  pReplicationSchedule:
+    Description: "Cron Expression to schedule and trigger Glue catalog replication"
+    Type: String
+    Default: "cron(30 0 * * ? *)"
+
+Resources:
+    ### DynamoDB ###
+    rGlueDatabaseExportTask:
+      Type: "AWS::DynamoDB::Table"
+      Properties:
+          TableName: "glue_database_export_task"
+          BillingMode: "PAY_PER_REQUEST"
+          AttributeDefinitions:
+            - AttributeName: "db_id"
+              AttributeType: "S"
+            - AttributeName: "export_run_id"
+              AttributeType: "N"
+          KeySchema: 
+            - 
+              AttributeName: "db_id"
+              KeyType: "HASH"
+            - 
+              AttributeName: "export_run_id"
+              KeyType: "RANGE"
+
+    rDBStatus:
+      Type: "AWS::DynamoDB::Table"
+      Properties:
+          TableName: "db_status"
+          BillingMode: "PAY_PER_REQUEST"
+          AttributeDefinitions:
+            - AttributeName: "db_id"
+              AttributeType: "S"
+            - AttributeName: "export_run_id"
+              AttributeType: "N"
+          KeySchema: 
+            - 
+              AttributeName: "db_id"
+              KeyType: "HASH"
+            - 
+              AttributeName: "export_run_id"
+              KeyType: "RANGE"
+
+    rTableStatus:
+      Type: "AWS::DynamoDB::Table"
+      Properties:
+          TableName: "table_status"
+          BillingMode: "PAY_PER_REQUEST"
+          AttributeDefinitions:
+            - AttributeName: "table_id"
+              AttributeType: "S"
+            - AttributeName: "export_run_id"
+              AttributeType: "N"
+          KeySchema: 
+            - 
+              AttributeName: "table_id"
+              KeyType: "HASH"
+            - 
+              AttributeName: "export_run_id"
+              KeyType: "RANGE"
+
+    ### SNS ###
+    rReplicationPlannerSNSTopic:
+      Type: AWS::SNS::Topic
+      Properties:
+        TopicName: "ReplicationPlannerSNSTopic"
+        Subscription:
+          - Endpoint: !GetAtt rExportLambda.Arn
+            Protocol: lambda
+
+    rSchemaDistributionSNSTopic:
+      Type: AWS::SNS::Topic
+      Properties:
+        TopicName: "SchemaDistributionSNSTopic"
+
+    ### S3 ###
+    rImportLargeTableBucket:
+      Type: "AWS::S3::Bucket"
+      Properties: 
+        BucketName: !Join
+          - ''
+          - - 'import-large-table-'
+            - !Select [2, !Split ['/', !Ref "AWS::StackId"] ]
+        PublicAccessBlockConfiguration:
+          BlockPublicAcls: True
+          BlockPublicPolicy: True
+          IgnorePublicAcls: True
+          RestrictPublicBuckets: True
+        BucketEncryption:
+          ServerSideEncryptionConfiguration:
+            - ServerSideEncryptionByDefault:
+                SSEAlgorithm: AES256
+
+    rImportLargeTableBucketPolicy: 
+      Type: AWS::S3::BucketPolicy
+      Properties: 
+        Bucket: !Ref rImportLargeTableBucket
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement: 
+            - 
+              Action:
+                - "s3:GetBucketLocation"
+                - "s3:ListBucket"
+              Effect: "Allow"
+              Resource:
+                - !Join ["", ["arn:aws:s3:::", !Ref rImportLargeTableBucket]]
+              Principal: 
+                AWS:
+                - !Sub "arn:aws:iam::${pTargetAccountId}:root"
+
+    ### SQS ###
+    rLargeTableSQSQueue:
+      Type: "AWS::SQS::Queue"
+      Properties:
+        QueueName: "LargeTableSQSQueue"
+        VisibilityTimeout: 195
+
+    ### IAM ###
+    rGlueCatalogReplicationPolicyRole:
+      Type: "AWS::IAM::Role"
+      Properties:
+        AssumeRolePolicyDocument:
+          Version: "2012-10-17"
+          Statement:
+            - Effect: Allow
+              Principal:
+                Service: lambda.amazonaws.com
+              Action: "sts:AssumeRole"
+        Path: "/"
+        ManagedPolicyArns: 
+          - "arn:aws:iam::aws:policy/AWSLambdaExecute"
+        Policies:
+          - PolicyName: GlueCatalogReplicationPolicy
+            PolicyDocument:
+              Version: '2012-10-17'
+              Statement:
+              - Effect: Allow
+                Action:
+                  - "glue:GetDatabase"
+                  - "glue:GetPartition"
+                  - "glue:GetTableVersion"
+                  - "glue:GetTables"
+                  - "glue:GetTableVersions"
+                  - "glue:GetPartitions"
+                  - "glue:BatchDeleteTableVersion"
+                  - "glue:BatchGetPartition"
+                  - "glue:GetDatabases"
+                  - "glue:GetTable"
+                Resource: "*"
+              - Effect: Allow
+                Action:
+                  - "sqs:DeleteMessage"
+                  - "sqs:ListQueues"
+                  - "sqs:GetQueueUrl"
+                  - "sqs:ListDeadLetterSourceQueues"
+                  - "sqs:ChangeMessageVisibility"
+                  - "sqs:DeleteMessageBatch"
+                  - "sqs:SendMessageBatch"
+                  - "sqs:ReceiveMessage"
+                  - "sqs:SendMessage"
+                  - "sqs:GetQueueAttributes"
+                  - "sqs:ListQueueTags"
+                Resource: 
+                  - '*'
+              - Effect: Allow
+                Action:
+                  - "dynamodb:BatchWriteItem"
+                  - "dynamodb:PutItem"
+                Resource: 
+                  - "*"
+              - Effect: Allow
+                Action:
+                  - "sns:Publish"
+                Resource: 
+                  - "*"
+
+    ### Lambda ###
+    rGDCReplicationPlannerLambda:
+      Type: "AWS::Serverless::Function"
+      Properties:
+        CodeUri: ../aws-glue-data-catalog-replication-utility-1.0.0.jar
+        FunctionName: "GDCReplicationPlannerLambda"
+        Environment:
+          Variables:
+            source_glue_catalog_id: !Ref 'AWS::AccountId'
+            ddb_name_gdc_replication_planner: !Ref rGlueDatabaseExportTask
+            database_prefix_list: !Ref pDatabasePrefixList
+            separator: !Ref pDatabasePrefixSeparator
+            region: !Ref 'AWS::Region'
+            sns_topic_arn_gdc_replication_planner: !Ref rReplicationPlannerSNSTopic
+        Handler: com.amazonaws.gdcreplication.lambda.GDCReplicationPlanner
+        Runtime: java8
+        Description: "Replication Planner Lambda"
+        MemorySize: 512
+        Timeout: 300
+        Role: !GetAtt rGlueCatalogReplicationPolicyRole.Arn
+
+    rReplicationLambdaTriggerRule:
+      Type: "AWS::Events::Rule"
+      Properties:
+        Name: "glue-catalog-replication-trigger"
+        Description: Glue catalog Replication Lambda Trigger
+        State: ENABLED
+        ScheduleExpression: !Ref pReplicationSchedule
+        Targets:
+          - Id: "glue-catalog-replication-trigger"
+            Arn: !GetAtt rGDCReplicationPlannerLambda.Arn
+
+    rPermissionEventsInvokeRoutingLambda: 
+      Type: AWS::Lambda::Permission
+      Properties: 
+        FunctionName: !Ref rGDCReplicationPlannerLambda
+        Action: "lambda:InvokeFunction"
+        Principal: "events.amazonaws.com"
+        SourceArn: !GetAtt rReplicationLambdaTriggerRule.Arn
+
+    rExportLambda:
+      Type: "AWS::Serverless::Function"
+      Properties:
+        CodeUri: ../aws-glue-data-catalog-replication-utility-1.0.0.jar
+        FunctionName: "ExportLambda"
+        Environment:
+          Variables:
+            source_glue_catalog_id: !Ref 'AWS::AccountId'
+            ddb_name_db_export_status: !Ref rDBStatus
+            ddb_name_table_export_status: !Ref rTableStatus
+            region: !Ref 'AWS::Region'
+            sns_topic_arn_export_dbs_tables: !Ref rSchemaDistributionSNSTopic
+            sqs_queue_url_large_tables: !Ref rLargeTableSQSQueue
+        Handler: com.amazonaws.gdcreplication.lambda.ExportDatabaseWithTables
+        Runtime: java8
+        Description: "Export Lambda"
+        MemorySize: 512
+        Timeout: 300
+        Role: !GetAtt rGlueCatalogReplicationPolicyRole.Arn
+    
+    rExportLambdaSNSPermission:
+      Type: AWS::Lambda::Permission
+      Properties: 
+        Action: lambda:InvokeFunction
+        FunctionName: !Ref rExportLambda
+        Principal: sns.amazonaws.com
+        SourceArn: !Sub "arn:aws:sns:${AWS::Region}:${AWS::AccountId}:ReplicationPlannerSNSTopic"
+    
+    rExportLargeTableLambda:
+      Type: "AWS::Serverless::Function"
+      Properties:
+        CodeUri: ../aws-glue-data-catalog-replication-utility-1.0.0.jar
+        FunctionName: "ExportLargeTableLambda"
+        Environment:
+          Variables:
+            s3_bucket_name: !Ref rImportLargeTableBucket
+            ddb_name_table_export_status: !Ref rTableStatus
+            region: !Ref 'AWS::Region'
+            sns_topic_arn_export_dbs_tables: !Ref rSchemaDistributionSNSTopic
+        Handler: com.amazonaws.gdcreplication.lambda.ExportLargeTable
+        Runtime: java8
+        Description: "Export Large Table Lambda"
+        MemorySize: 512
+        Timeout: 180
+        Role: !GetAtt rGlueCatalogReplicationPolicyRole.Arn
+
+    rExportLargeTableLambdaSQSPermission:
+      Type: AWS::Lambda::EventSourceMapping
+      Properties:
+        BatchSize: 1
+        Enabled: True
+        EventSourceArn: !GetAtt rLargeTableSQSQueue.Arn
+        FunctionName: !GetAtt rExportLargeTableLambda.Arn

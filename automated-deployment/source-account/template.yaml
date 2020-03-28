@@ -3,9 +3,6 @@ Transform: "AWS::Serverless-2016-10-31"
 Description: "AWS Glue Data Catalog Replication Utility - Source Account"
 
 Parameters:
-  pTargetAccountId:
-    Description: "AWS Target Account ID"
-    Type: String
   pDatabasePrefixList:
     Description: "List of database prefixes separated by a token. E.g. raw_data_,processed_data_. To export all databases, do not add this variable"
     Type: String
@@ -106,24 +103,6 @@ Resources:
           ServerSideEncryptionConfiguration:
             - ServerSideEncryptionByDefault:
                 SSEAlgorithm: AES256
-
-    rImportLargeTableBucketPolicy: 
-      Type: AWS::S3::BucketPolicy
-      Properties: 
-        Bucket: !Ref rImportLargeTableBucket
-        PolicyDocument:
-          Version: '2012-10-17'
-          Statement: 
-            - 
-              Action:
-                - "s3:GetBucketLocation"
-                - "s3:ListBucket"
-              Effect: "Allow"
-              Resource:
-                - !Join ["", ["arn:aws:s3:::", !Ref rImportLargeTableBucket]]
-              Principal: 
-                AWS:
-                - !Sub "arn:aws:iam::${pTargetAccountId}:root"
 
     ### SQS ###
     rLargeTableSQSQueue:

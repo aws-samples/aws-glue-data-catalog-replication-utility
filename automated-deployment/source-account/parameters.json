@@ -1,9 +1,5 @@
 [
     {
-        "ParameterKey": "pTargetAccountId",
-        "ParameterValue": "111111111111"
-    },
-    {
         "ParameterKey": "pDatabasePrefixList",
         "ParameterValue": ""
     },

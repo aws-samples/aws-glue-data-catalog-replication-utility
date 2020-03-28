@@ -7,14 +7,16 @@ DIRNAME=$(dirname "$0")
 
 usage () { echo "
     -h -- Opens up this help message
+    -a -- Target AWS Account ID
     -n -- Name of the CloudFormation stack
     -p -- Name of the AWS profile to use
     -s -- Name of S3 bucket to upload artifacts to
 "; }
-options=':n:p:s:h'
+options=':a:n:p:s:h'
 while getopts $options option
 do
     case "$option" in
+        a  ) aflag=true; TARGET_ACCOUNT=$OPTARG;;
         n  ) nflag=true; STACK_NAME=$OPTARG;;
         p  ) pflag=true; PROFILE=$OPTARG;;
         s  ) sflag=true; S3_BUCKET=$OPTARG;;
@@ -25,13 +27,17 @@ do
     esac
 done
 
+if ! $aflag
+then
+    echo "-a not specified, the target AWS account ID (12 digits) must be specified. Aborting..." >&2
+    exit 0
+fi
 if ! $pflag
 then
     echo "-p not specified, using default..." >&2
     PROFILE="default"
     SOURCE_REGION=$(aws configure get region --profile ${PROFILE})
     SOURCE_ACCOUNT=$(aws sts get-caller-identity --profile ${PROFILE} | python3 -c "import sys, json; print(json.load(sys.stdin)['Account'])")
-    TARGET_ACCOUNT=$(sed -e 's/^"//' -e 's/"$//' <<<"$(jq '.[] | select(.ParameterKey=="pTargetAccountId") | .ParameterValue' $DIRNAME/parameters.json)")
 fi
 if ! $sflag
 then

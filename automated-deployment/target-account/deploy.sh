@@ -15,7 +15,7 @@ usage () { echo "
     -p -- Name of the AWS profile to use
     -s -- Name of S3 bucket to upload artifacts to
 "; }
-options='a:r::n:p:s:h'
+options=':a:r:n:p:s:h'
 while getopts $options option
 do
     case "$option" in

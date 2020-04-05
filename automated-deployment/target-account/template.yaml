@@ -1,0 +1,198 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: "AWS::Serverless-2016-10-31"
+Description: "AWS Glue Data Catalog Replication Utility - Source Account"
+
+Resources:
+    ### DynamoDB ###
+    rDBStatus:
+      Type: "AWS::DynamoDB::Table"
+      Properties:
+          TableName: "db_status"
+          BillingMode: "PAY_PER_REQUEST"
+          AttributeDefinitions:
+            - AttributeName: "db_id"
+              AttributeType: "S"
+            - AttributeName: "import_run_id"
+              AttributeType: "N"
+          KeySchema: 
+            - 
+              AttributeName: "db_id"
+              KeyType: "HASH"
+            - 
+              AttributeName: "import_run_id"
+              KeyType: "RANGE"
+
+    rTableStatus:
+      Type: "AWS::DynamoDB::Table"
+      Properties:
+          TableName: "table_status"
+          BillingMode: "PAY_PER_REQUEST"
+          AttributeDefinitions:
+            - AttributeName: "table_id"
+              AttributeType: "S"
+            - AttributeName: "import_run_id"
+              AttributeType: "N"
+          KeySchema: 
+            - 
+              AttributeName: "table_id"
+              KeyType: "HASH"
+            - 
+              AttributeName: "import_run_id"
+              KeyType: "RANGE"
+
+    ### SQS ###
+    rLargeTableSQSQueue:
+      Type: "AWS::SQS::Queue"
+      Properties:
+        QueueName: "LargeTableSQSQueue"
+        VisibilityTimeout: 195
+    rDeadLetterQueue:
+      Type: 'AWS::SQS::Queue'
+      Properties:
+        QueueName: "DeadLetterQueue"
+        VisibilityTimeout: 195
+
+    ### IAM ###
+    rGlueCatalogReplicationPolicyRole:
+      Type: "AWS::IAM::Role"
+      Properties:
+        AssumeRolePolicyDocument:
+          Version: "2012-10-17"
+          Statement:
+            - Effect: Allow
+              Principal:
+                Service: lambda.amazonaws.com
+              Action: "sts:AssumeRole"
+        Path: "/"
+        ManagedPolicyArns: 
+          - "arn:aws:iam::aws:policy/AWSLambdaExecute"
+        Policies:
+          - PolicyName: GlueCatalogReplicationPolicy
+            PolicyDocument:
+              Version: '2012-10-17'
+              Statement:
+              - Effect: Allow
+                Action:
+                  - "glue:SearchTables"
+                  - "glue:BatchCreatePartition"
+                  - "glue:GetDataCatalogEncryptionSettings"
+                  - "glue:GetTableVersions"
+                  - "glue:GetPartitions"
+                  - "glue:BatchDeletePartition"
+                  - "glue:DeleteTableVersion"
+                  - "glue:UpdateTable"
+                  - "glue:GetSecurityConfiguration"
+                  - "glue:GetResourcePolicy"
+                  - "glue:GetTableVersion"
+                  - "glue:CreatePartition"
+                  - "glue:UpdatePartition"
+                  - "glue:UpdateDatabase"
+                  - "glue:CreateTable"
+                  - "glue:GetTables"
+                  - "glue:BatchGetPartition"
+                  - "glue:GetSecurityConfigurations"
+                  - "glue:GetDatabases"
+                  - "glue:GetTable"
+                  - "glue:GetDatabase"
+                  - "glue:GetPartition"
+                  - "glue:CreateDatabase"
+                  - "glue:BatchDeleteTableVersion"
+                  - "glue:DeletePartition"
+                Resource: "*"
+              - Effect: Allow
+                Action:
+                  - "sqs:DeleteMessage"
+                  - "sqs:ListQueues"
+                  - "sqs:GetQueueUrl"
+                  - "sqs:ListDeadLetterSourceQueues"
+                  - "sqs:ChangeMessageVisibility"
+                  - "sqs:DeleteMessageBatch"
+                  - "sqs:SendMessageBatch"
+                  - "sqs:ReceiveMessage"
+                  - "sqs:SendMessage"
+                  - "sqs:GetQueueAttributes"
+                  - "sqs:ListQueueTags"
+                Resource: 
+                  - '*'
+              - Effect: Allow
+                Action:
+                  - "dynamodb:BatchWriteItem"
+                  - "dynamodb:PutItem"
+                Resource: 
+                  - "*"
+
+    ### Lambda ###
+    rImportLambda:
+      Type: "AWS::Serverless::Function"
+      Properties:
+        CodeUri: ../aws-glue-data-catalog-replication-utility-1.0.0.jar
+        FunctionName: "ImportLambda"
+        Environment:
+          Variables:
+            target_glue_catalog_id: !Ref 'AWS::AccountId'
+            ddb_name_db_import_status: !Ref rDBStatus
+            ddb_name_table_import_status: !Ref rTableStatus
+            skip_archive: "true"
+            region: !Ref 'AWS::Region'
+            sqs_queue_url_large_tables: !Ref rLargeTableSQSQueue
+            dlq_url_sqs: !Ref rDeadLetterQueue
+        Handler: com.amazonaws.gdcreplication.lambda.ImportDatabaseOrTable
+        Runtime: java8
+        Description: "Import Lambda"
+        MemorySize: 512
+        Timeout: 300
+        Role: !GetAtt rGlueCatalogReplicationPolicyRole.Arn
+
+    rImportLargeTableLambda:
+      Type: "AWS::Serverless::Function"
+      Properties:
+        CodeUri: ../aws-glue-data-catalog-replication-utility-1.0.0.jar
+        FunctionName: "ImportLargeTableLambda"
+        Environment:
+          Variables:
+            target_glue_catalog_id: !Ref 'AWS::AccountId'
+            ddb_name_table_import_status: !Ref rTableStatus
+            skip_archive: "true"
+            region: !Ref 'AWS::Region'
+        Handler: com.amazonaws.gdcreplication.lambda.ImportLargeTable
+        Runtime: java8
+        Description: "Import Large Table Lambda"
+        MemorySize: 512
+        Timeout: 180
+        Role: !GetAtt rGlueCatalogReplicationPolicyRole.Arn
+
+    rImportLargeTableLambdaSQSPermission:
+      Type: AWS::Lambda::EventSourceMapping
+      Properties:
+        BatchSize: 1
+        Enabled: True
+        EventSourceArn: !GetAtt rLargeTableSQSQueue.Arn
+        FunctionName: !GetAtt rImportLargeTableLambda.Arn
+
+    rDLQProcessorLambda:
+      Type: "AWS::Serverless::Function"
+      Properties:
+        CodeUri: ../aws-glue-data-catalog-replication-utility-1.0.0.jar
+        FunctionName: "DLQProcessorLambda"
+        Environment:
+          Variables:
+            target_glue_catalog_id: !Ref 'AWS::AccountId'
+            ddb_name_db_import_status: !Ref rDBStatus
+            ddb_name_table_import_status: !Ref rTableStatus
+            skip_archive: "true"
+            dlq_url_sqs: !Ref rDeadLetterQueue
+            region: !Ref 'AWS::Region'
+        Handler: com.amazonaws.gdcreplication.lambda.DLQImportDatabaseOrTable
+        Runtime: java8
+        Description: "DLQ Lambda"
+        MemorySize: 512
+        Timeout: 180
+        Role: !GetAtt rGlueCatalogReplicationPolicyRole.Arn
+
+    rDLQProcessorLambdaSQSPermission:
+      Type: AWS::Lambda::EventSourceMapping
+      Properties:
+        BatchSize: 1
+        Enabled: True
+        EventSourceArn: !GetAtt rDeadLetterQueue.Arn
+        FunctionName: !GetAtt rDLQProcessorLambda.Arn

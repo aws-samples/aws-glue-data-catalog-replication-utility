@@ -15,6 +15,14 @@ Parameters:
     Description: "Cron Expression to schedule and trigger Glue catalog replication"
     Type: String
     Default: "cron(30 0 * * ? *)"
+  pKmsKeyARNSQS:
+    Description: "KMS Key ARN for SQS Queue"
+    Type: String
+    Default: ""
+  pKmsKeyARNSNS:
+    Description: "KMS Key ARN for SNS Topic"
+    Type: String
+    Default: ""
 
 Resources:
     ### DynamoDB ###
@@ -77,6 +85,7 @@ Resources:
       Type: AWS::SNS::Topic
       Properties:
         TopicName: "ReplicationPlannerSNSTopic"
+        KmsMasterKeyId: !Ref pKmsKeyARNSNS
         Subscription:
           - Endpoint: !GetAtt rExportLambda.Arn
             Protocol: lambda
@@ -85,6 +94,7 @@ Resources:
       Type: AWS::SNS::Topic
       Properties:
         TopicName: "SchemaDistributionSNSTopic"
+        KmsMasterKeyId: !Ref pKmsKeyARNSNS
 
     ### S3 ###
     rImportLargeTableBucket:
@@ -110,6 +120,7 @@ Resources:
       Properties:
         QueueName: "LargeTableSQSQueue"
         VisibilityTimeout: 195
+        KmsMasterKeyId: !Ref pKmsKeyARNSQS
 
     ### IAM ###
     rGlueCatalogReplicationPolicyRole:

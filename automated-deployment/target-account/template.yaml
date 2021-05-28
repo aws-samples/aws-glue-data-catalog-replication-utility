@@ -1,7 +1,13 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Transform: "AWS::Serverless-2016-10-31"
-Description: "AWS Glue Data Catalog Replication Utility - Source Account"
+Description: "AWS Glue Data Catalog Replication Utility - Target Account"
 
+Parameters:
+  pKmsKeyARNSQS:
+    Description: "KMS Key ARN for SQS Queue"
+    Type: String
+    Default: ""
+    
 Resources:
     ### DynamoDB ###
     rDBStatus:
@@ -51,6 +57,7 @@ Resources:
       Properties:
         QueueName: "DeadLetterQueue"
         VisibilityTimeout: 195
+        KmsMasterKeyId: !Ref pKmsKeyARNSQS
 
     ### IAM ###
     rGlueCatalogReplicationPolicyRole:

@@ -52,6 +52,7 @@ Resources:
       Properties:
         QueueName: "LargeTableSQSQueue"
         VisibilityTimeout: 195
+        KmsMasterKeyId: !Ref pKmsKeyARNSQS
     rDeadLetterQueue:
       Type: 'AWS::SQS::Queue'
       Properties:

@@ -104,6 +104,8 @@ Resources:
           - ''
           - - 'import-large-table-'
             - !Select [2, !Split ['/', !Ref "AWS::StackId"] ]
+        VersioningConfiguration:
+          Status: Enabled
         PublicAccessBlockConfiguration:
           BlockPublicAcls: True
           BlockPublicPolicy: True

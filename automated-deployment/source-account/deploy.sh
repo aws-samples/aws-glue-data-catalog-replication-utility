@@ -36,9 +36,9 @@ if ! $pflag
 then
     echo "-p not specified, using default..." >&2
     PROFILE="default"
-    SOURCE_REGION=$(aws configure get region --profile ${PROFILE})
-    SOURCE_ACCOUNT=$(aws sts get-caller-identity --profile ${PROFILE} | python3 -c "import sys, json; print(json.load(sys.stdin)['Account'])")
 fi
+SOURCE_REGION=$(aws configure get region --profile ${PROFILE})
+SOURCE_ACCOUNT=$(aws sts get-caller-identity --profile ${PROFILE} | python3 -c "import sys, json; print(json.load(sys.stdin)['Account'])")
 if ! $sflag
 then
     S3_BUCKET=glue-data-catalog-replication-$SOURCE_REGION-$SOURCE_ACCOUNT
@@ -110,6 +110,6 @@ else
 fi
 
 echo "Subscribing Target account to SNS Schema Distribution topic..."
-aws sns add-permission --label lambda-access --aws-account-id $TARGET_ACCOUNT \
+aws sns add-permission --profile $PROFILE --label lambda-access --aws-account-id $TARGET_ACCOUNT \
 --topic-arn arn:aws:sns:$SOURCE_REGION:$SOURCE_ACCOUNT:SchemaDistributionSNSTopic \
 --action-name Subscribe ListSubscriptionsByTopic Receive

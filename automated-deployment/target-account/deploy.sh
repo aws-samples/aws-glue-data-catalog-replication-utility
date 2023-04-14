@@ -45,9 +45,9 @@ if ! $pflag
 then
     echo "-p not specified, using default..." >&2
     PROFILE="default"
-    TARGET_REGION=$(aws configure get region --profile ${PROFILE})
-    TARGET_ACCOUNT=$(aws sts get-caller-identity --profile ${PROFILE} | python3 -c "import sys, json; print(json.load(sys.stdin)['Account'])")
 fi
+TARGET_REGION=$(aws configure get region --profile ${PROFILE})
+TARGET_ACCOUNT=$(aws sts get-caller-identity --profile ${PROFILE} | python3 -c "import sys, json; print(json.load(sys.stdin)['Account'])")
 if ! $sflag
 then
     S3_BUCKET=glue-data-catalog-replication-$TARGET_REGION-$TARGET_ACCOUNT
@@ -117,11 +117,11 @@ else
 fi
 
 echo "Subscribing Lambda to Source SNS Schema Distribution topic..."
-aws lambda add-permission --function-name ImportLambda \
+aws lambda add-permission --profile $PROFILE --function-name ImportLambda \
 --source-arn arn:aws:sns:$SOURCE_REGION:$SOURCE_ACCOUNT:SchemaDistributionSNSTopic \
 --statement-id sns-x-account --action "lambda:InvokeFunction" \
 --principal sns.amazonaws.com
 
-aws sns subscribe --region $SOURCE_REGION --protocol lambda \
+aws sns subscribe --profile $PROFILE --region $SOURCE_REGION --protocol lambda \
 --topic-arn arn:aws:sns:$SOURCE_REGION:$SOURCE_ACCOUNT:SchemaDistributionSNSTopic \
 --notification-endpoint arn:aws:lambda:$TARGET_REGION:$TARGET_ACCOUNT:function:ImportLambda

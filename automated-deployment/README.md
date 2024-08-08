@@ -61,9 +61,13 @@ This guide explains how to deploy the AWS Glue data catalog utility in both the 
                 },
                 "Action": [
                     "s3:GetBucketLocation",
-                    "s3:ListBucket"
+                    "s3:ListBucket",
+                    "s3:GetObject"
                 ],
-                "Resource": "arn:aws:s3:::import-large-table-b2465b90-638f-11ea-8000-0a52752701a6"
+                "Resource": [
+                  "arn:aws:s3:::import-large-table-b2465b90-638f-11ea-8000-0a52752701a6",
+                  "arn:aws:s3:::import-large-table-b2465b90-638f-11ea-8000-0a52752701a6/*"
+                ]
             }
         ]
     }
